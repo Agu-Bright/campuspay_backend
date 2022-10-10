@@ -1,0 +1,211 @@
+[
+  {
+    "name": "Javascript and jquery",
+    "price": "45.89",
+    "description": "This is the best text book on web development, which lays more emphasis on javascript in the context of web development",
+    "ratings": 4.5,
+    "images": [
+      {
+        "public_id": "products/61oXGZ60GfL_fixco9",
+        "url": "https://res.cloudinary.com/bookit/image/upload/v1614877995/products/61oXGZ60GfL_fixco9.jpg"
+      }
+    ],
+    "pageCount": 500,
+    "author": "John Ducket",
+    "category": "Engineering",
+    "stock": 50,
+    "numOfReviews": 0,
+    "reviews": [],
+    "location": "Enugu"
+  },
+  {
+    "name": "Medical Patology",
+    "price": "2000",
+    "description": "Look i dont know anything about medicine or medical patology, but this book helped me to understand everything abput medival patology, This books contains all the scheme of work required in the A level of University",
+    "ratings": 3,
+    "images": [
+      {
+        "public_id": "products/61oXGZ60GfL_fixco9",
+        "url": "https://res.cloudinary.com/bookit/image/upload/v1614877995/products/61oXGZ60GfL_fixco9.jpg"
+      }
+    ],
+    "pageCount": 765,
+    "author": "William White",
+    "category": "Medicine",
+    "stock": 2,
+    "numOfReviews": 3,
+    "reviews": [],
+    "location": "Lagos"
+  },
+  {
+    "name": "Static Energy",
+    "price": "3500",
+    "description": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim modi corrupti doloremque ipsa libero consectetur iste! Expedita, quidem eligendi? Fugit exercitationem alias placeat ex quis. Fuga recusandae in labore at aliquam, ipsam cum illo deleniti debitis distinctio magni libero repudiandae expedita facilis cupiditate officia architecto voluptatum laudantium dolor dolorem vitae!",
+    "ratings": 4,
+    "images": [
+      {
+        "public_id": "products/61oXGZ60GfL_fixco9",
+        "url": "https://res.cloudinary.com/bookit/image/upload/v1614877995/products/61oXGZ60GfL_fixco9.jpg"
+      }
+    ],
+    "pageCount": 350,
+    "author": "John Ducket",
+    "category": "Engineering",
+    "stock": 10,
+    "numOfReviews": 32,
+    "reviews": [],
+    "location": "Abuja"
+  },
+  {
+    "name": "Mathematicl Analysis",
+    "price": "2000",
+    "description": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim modi corrupti doloremque ipsa libero consectetur iste! Expedita, quidem eligendi? Fugit exercitationem alias placeat ex quis. Fuga recusandae in labore at aliquam, ipsam cum illo deleniti debitis distinctio magni libero repudiandae expedita facilis cupiditate officia architecto voluptatum laudantium dolor dolorem vitae!",
+    "ratings": 2.5,
+    "images": [
+      {
+        "public_id": "products/61oXGZ60GfL_fixco9",
+        "url": "https://res.cloudinary.com/bookit/image/upload/v1614877995/products/61oXGZ60GfL_fixco9.jpg"
+      }
+    ],
+    "pageCount": 560,
+    "author": "Micheal Davinson",
+    "category": "Engineering",
+    "stock": 50,
+    "numOfReviews": 32,
+    "reviews": [],
+    "location": "Enugu"
+  },
+  {
+    "name": "Phsycology",
+    "price": "4300",
+    "description": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim modi corrupti doloremque ipsa libero consectetur iste! Expedita, quidem eligendi? Fugit exercitationem alias placeat ex quis. Fuga recusandae in labore at aliquam, ipsam cum illo deleniti debitis distinctio magni libero repudiandae expedita facilis cupiditate officia architecto voluptatum laudantium dolor dolorem vitae!",
+    "ratings": 3,
+    "images": [
+      {
+        "public_id": "products/61oXGZ60GfL_fixco9",
+        "url": "https://res.cloudinary.com/bookit/image/upload/v1614877995/products/61oXGZ60GfL_fixco9.jpg"
+      }
+    ],
+    "pageCount": 962,
+    "author": "Onuigbo Gerry",
+    "category": "Others",
+    "stock": 30,
+    "numOfReviews": 32,
+    "reviews": [],
+    "location": "Imo State"
+  },
+  {
+    "name": "Nigeria Government and Politics",
+    "price": "2450",
+    "description": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim modi corrupti doloremque ipsa libero consectetur iste! Expedita, quidem eligendi? Fugit exercitationem alias placeat ex quis. Fuga recusandae in labore at aliquam, ipsam cum illo deleniti debitis distinctio magni libero repudiandae expedita facilis cupiditate officia architecto voluptatum laudantium dolor dolorem vitae!",
+    "ratings": 5,
+    "images": [
+      {
+        "public_id": "products/61oXGZ60GfL_fixco9",
+        "url": "https://res.cloudinary.com/bookit/image/upload/v1614877995/products/61oXGZ60GfL_fixco9.jpg"
+      }
+    ],
+    "pageCount": 430,
+    "author": "Mary Vivian",
+    "category": "Others",
+    "stock": 85,
+    "numOfReviews": 32,
+    "reviews": [],
+    "location": "Abuja"
+  },
+  {
+    "name": "Nursing",
+    "price": "8000",
+    "description": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim modi corrupti doloremque ipsa libero consectetur iste! Expedita, quidem eligendi? Fugit exercitationem alias placeat ex quis. Fuga recusandae in labore at aliquam, ipsam cum illo deleniti debitis distinctio magni libero repudiandae expedita facilis cupiditate officia architecto voluptatum laudantium dolor dolorem vitae!",
+    "ratings": 4.5,
+    "images": [
+      {
+        "public_id": "products/61oXGZ60GfL_fixco9",
+        "url": "https://res.cloudinary.com/bookit/image/upload/v1614877995/products/61oXGZ60GfL_fixco9.jpg"
+      }
+    ],
+    "pageCount": 1058,
+    "author": "Wilson Edinburge",
+    "category": "Medicine",
+    "stock": 5,
+    "numOfReviews": 32,
+    "reviews": [],
+    "location": "Abuja"
+  },
+  {
+    "name": "Fundamentals of Arduino",
+    "price": "5900",
+    "description": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim modi corrupti doloremque ipsa libero consectetur iste! Expedita, quidem eligendi? Fugit exercitationem alias placeat ex quis. Fuga recusandae in labore at aliquam, ipsam cum illo deleniti debitis distinctio magni libero repudiandae expedita facilis cupiditate officia architecto voluptatum laudantium dolor dolorem vitae!",
+    "ratings": 4.8,
+    "images": [
+      {
+        "public_id": "products/61oXGZ60GfL_fixco9",
+        "url": "https://res.cloudinary.com/bookit/image/upload/v1614877995/products/61oXGZ60GfL_fixco9.jpg"
+      }
+    ],
+    "pageCount": 980,
+    "author": "Bright Agu",
+    "category": "Engineering",
+    "stock": 40,
+    "numOfReviews": 32,
+    "reviews": [],
+    "location": "Abia"
+  },
+  {
+    "name": "Html/css",
+    "price": "5000",
+    "description": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim modi corrupti doloremque ipsa libero consectetur iste! Expedita, quidem eligendi? Fugit exercitationem alias placeat ex quis. Fuga recusandae in labore at aliquam, ipsam cum illo deleniti debitis distinctio magni libero repudiandae expedita facilis cupiditate officia architecto voluptatum laudantium dolor dolorem vitae!",
+    "ratings": 4.5,
+    "images": [
+      {
+        "public_id": "products/61oXGZ60GfL_fixco9",
+        "url": "https://res.cloudinary.com/bookit/image/upload/v1614877995/products/61oXGZ60GfL_fixco9.jpg"
+      }
+    ],
+    "pageCount": 500,
+    "author": "John Ducket",
+    "category": "Engineering",
+    "stock": 50,
+    "numOfReviews": 32,
+    "reviews": [],
+    "location": "Enugu"
+  },
+  {
+    "name": "Medical Prasitology",
+    "price": "4900",
+    "description": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim modi corrupti doloremque ipsa libero consectetur iste! Expedita, quidem eligendi? Fugit exercitationem alias placeat ex quis. Fuga recusandae in labore at aliquam, ipsam cum illo deleniti debitis distinctio magni libero repudiandae expedita facilis cupiditate officia architecto voluptatum laudantium dolor dolorem vitae!",
+    "ratings": 5,
+    "images": [
+      {
+        "public_id": "products/61oXGZ60GfL_fixco9",
+        "url": "https://res.cloudinary.com/bookit/image/upload/v1614877995/products/61oXGZ60GfL_fixco9.jpg"
+      }
+    ],
+    "pageCount": 620,
+    "author": "Arora Arora",
+    "category": "Medicine",
+    "stock": 10,
+    "numOfReviews": 32,
+    "reviews": [],
+    "location": "Enugu"
+  },
+  {
+    "name": "Mongodb in Action",
+    "price": "5000",
+    "description": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim modi corrupti doloremque ipsa libero consectetur iste! Expedita, quidem eligendi? Fugit exercitationem alias placeat ex quis. Fuga recusandae in labore at aliquam, ipsam cum illo deleniti debitis distinctio magni libero repudiandae expedita facilis cupiditate officia architecto voluptatum laudantium dolor dolorem vitae!",
+    "ratings": 4.5,
+    "images": [
+      {
+        "public_id": "products/61oXGZ60GfL_fixco9",
+        "url": "https://res.cloudinary.com/bookit/image/upload/v1614877995/products/61oXGZ60GfL_fixco9.jpg"
+      }
+    ],
+    "pageCount": 985,
+    "author": "Jerry Mongoose",
+    "category": "Engineering",
+    "stock": 50,
+    "numOfReviews": 32,
+    "reviews": [],
+    "location": "Imo State"
+  }
+]
