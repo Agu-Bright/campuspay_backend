@@ -11,6 +11,7 @@ const orderRoutes = require("./routes/orderRoute");
 const payment = require("./routes/payment");
 const cloudinary = require("cloudinary");
 const fileUpload = require("express-fileupload");
+const path = require("path");
 
 const PORT = process.env.PORT || 4000;
 
