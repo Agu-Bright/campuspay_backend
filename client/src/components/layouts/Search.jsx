@@ -3,7 +3,7 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
-import { Button, FormControl } from "@mui/material";
+import { Box, Button, FormControl } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -65,7 +65,7 @@ function Searche() {
   };
 
   return (
-    <>
+    <Box sx={{ display: { xs: "none", md: "block" } }}>
       <Search>
         <FormControl>
           <SearchIconWrapper>
@@ -82,7 +82,7 @@ function Searche() {
           />
         </FormControl>
       </Search>
-    </>
+    </Box>
   );
 }
 

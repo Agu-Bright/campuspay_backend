@@ -28,14 +28,15 @@ import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 
 import Badge from "@mui/material/Badge";
-import MenuItem from "@mui/material/MenuItem";
+// import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 // import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
+// import MailIcon from "@mui/icons-material/Mail";
+// import NotificationsIcon from "@mui/icons-material/Notifications";
+// import MoreIcon from "@mui/icons-material/MoreVert";
+import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Searche from "./Search";
 import { useDispatch, useSelector } from "react-redux";
@@ -297,117 +298,125 @@ export default function PrimarySearchAppBar() {
     setDrawer(false);
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <MuiDrawer
-        close={handleDrawerClose}
-        open={Drawer}
-        bookNav={() => {
-          handleBookNavigate();
-        }}
-        cartNav={() => {
-          handleCartNavigate();
-        }}
-        profileNav={() => {
-          handleProfileNav();
-        }}
-        logOutNav={() => {
-          logoutHandler();
-        }}
-        signUpNav={() => {
-          handleSIgnUp();
-        }}
-        orderNav={() => handleOrderNavigate()}
-        homeNav={() => handleHomeNavigate()}
-        signInNav={() => handleSignIn()}
-        adminNav={() => handleAdminNavigate()}
-        sellerNav={() => handleSellerNavigate()}
-      />
-      <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
-        <SnackbarAlert>
-          <h5>logOut Success</h5>
-        </SnackbarAlert>
-      </Snackbar>
+    <>
+      <Box sx={{ flexGrow: 1 }}>
+        <MuiDrawer
+          close={handleDrawerClose}
+          open={Drawer}
+          bookNav={() => {
+            handleBookNavigate();
+          }}
+          cartNav={() => {
+            handleCartNavigate();
+          }}
+          profileNav={() => {
+            handleProfileNav();
+          }}
+          logOutNav={() => {
+            logoutHandler();
+          }}
+          signUpNav={() => {
+            handleSIgnUp();
+          }}
+          orderNav={() => handleOrderNavigate()}
+          homeNav={() => handleHomeNavigate()}
+          signInNav={() => handleSignIn()}
+          adminNav={() => handleAdminNavigate()}
+          sellerNav={() => handleSellerNavigate()}
+        />
+        <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
+          <SnackbarAlert>
+            <h5>logOut Success</h5>
+          </SnackbarAlert>
+        </Snackbar>
 
-      <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
-        <Toolbar>
-          <Box width="80px" height="80px">
-            <img
-              onClick={() => navigate("/")}
-              src="/logo.png"
-              alt="logo"
-              style={{ width: "80px", height: "80px" }}
-            />
-          </Box>
+        <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
+          <Typography
+            variant="body2"
+            sx={{ backgroundColor: "#FFF8F0", paddingLeft: "5px" }}
+          >
+            Become a <Link sx={{ color: "white" }}>seller</Link>
+          </Typography>
+          <Toolbar>
+            <Box width="80px" height="80px">
+              <img
+                onClick={() => navigate("/")}
+                src="/logo.png"
+                alt="logo"
+                style={{ width: "80px", height: "80px" }}
+              />
+            </Box>
 
-          <Searche />
-          <Button
-            onClick={() => navigate("/books")}
-            sx={{ display: { xs: "none", md: "block" } }}
-          >
-            Books
-          </Button>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box
-            sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
-          >
+            <Searche />
+            <Button
+              onClick={() => navigate("/books")}
+              sx={{ display: { xs: "none", md: "block" } }}
+            >
+              Books
+            </Button>
+            <Box sx={{ flexGrow: 1 }} />
+            <Box
+              sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
+            >
+              <IconButton
+                sx={{ "&:focus": { outline: "none" } }}
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+                onClick={() => {
+                  navigate("/cart");
+                }}
+              >
+                <Badge
+                  badgeContent={cartItems ? cartItems.length : "0"}
+                  color="primary"
+                >
+                  <ShoppingCartIcon />
+                </Badge>
+              </IconButton>
+              <IconButton
+                sx={{ "&:focus": { outline: "none" } }}
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                {user && !loading ? (
+                  <Avatar alt={user.name} src={user.avatar.url} />
+                ) : (
+                  <AccountCircle />
+                )}
+              </IconButton>
+              {user && !loading && (
+                <Typography sx={{ margin: "4px" }} variant="body1">
+                  Welcome!! {user.name.split(" ")[0]}
+                </Typography>
+              )}
+            </Box>
+
             <IconButton
-              sx={{ "&:focus": { outline: "none" } }}
               size="large"
-              aria-label="show 17 new notifications"
+              edge="start"
               color="inherit"
-              onClick={() => {
-                navigate("/cart");
+              aria-label="open drawer"
+              onClick={() => setDrawer(true)}
+              sx={{
+                mr: 2,
+                "&:focus": {
+                  outline: "none",
+                },
+                display: { xs: "block", md: "none" },
               }}
             >
-              <Badge
-                badgeContent={cartItems ? cartItems.length : "0"}
-                color="primary"
-              >
-                <ShoppingCartIcon />
-              </Badge>
+              <MenuIcon color="primary" />
             </IconButton>
-            <IconButton
-              sx={{ "&:focus": { outline: "none" } }}
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              {user && !loading ? (
-                <Avatar alt={user.name} src={user.avatar.url} />
-              ) : (
-                <AccountCircle />
-              )}
-            </IconButton>
-            {user && !loading && (
-              <Typography sx={{ margin: "4px" }} variant="body1">
-                Welcome!! {user.name.split(" ")[0]}
-              </Typography>
-            )}
-          </Box>
-
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={() => setDrawer(true)}
-            sx={{
-              mr: 2,
-              "&:focus": {
-                outline: "none",
-              },
-              display: { xs: "block", md: "none" },
-            }}
-          >
-            <MenuIcon color="primary" />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      {renderMenu}
-    </Box>
+          </Toolbar>
+        </AppBar>
+        {renderMenu}
+      </Box>
+    </>
   );
 }

@@ -1,11 +1,11 @@
 import React from "react";
 import CheckOutSteps from "./checkOutSteps";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Avatar, Box, Stack } from "@mui/material";
 import axios from "axios";
 function ConfirmOrder() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { cartItems, shippingInfo } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.auth);
 
@@ -38,6 +38,7 @@ function ConfirmOrder() {
       shippingPrice: shippingPrice,
     };
     try {
+      //initializing the transaction
       const { data } = await axios.post(
         "/api/v1/payment/process",
         transactionData,
@@ -46,17 +47,11 @@ function ConfirmOrder() {
           credentials: "include",
         }
       );
-      // console.log(data.data.authorization_url);
-      // XMLHttpRequest.setRequestHeader(
-      //   "Access-Control-Allow-Origin",
-      //   "https://standard.paystack.co/charge/"
-      // );
-
       window.location.replace(data.data.authorization_url);
     } catch (error) {
       console.log(error);
+      navigate("/payment");
     }
-    // navigate("/payment");
   };
   return (
     <Box sx={{ marginTop: { xs: "10vh", md: "20vh" } }}>

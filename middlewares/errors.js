@@ -29,7 +29,7 @@ const errorMiddlewaree = (err, req, res, next) => {
 
     res.status(error.statusCode).json({
       success: false,
-      message: error.message || "internal server error",
+      Message: error.message || "internal server error",
     });
   }
 };

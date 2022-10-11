@@ -6,6 +6,7 @@ import {
   Stack,
   Button,
   Typography,
+  Box,
 } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useEffect, useState, forwardRef } from "react";
@@ -21,9 +22,9 @@ function Books({
   loading,
   newBooks,
   error,
-  booksCount,
-  resPerPage,
-  filteredBookCount,
+  // booksCount,
+  // resPerPage,
+  // filteredBookCount,
 }) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -45,7 +46,7 @@ function Books({
   };
   return (
     <>
-      <div className="container-fluid pt-5 pb-3">
+      <Box className="container-fluid pt-5 pb-3">
         <h3
           style={{
             width: "auto",
@@ -74,14 +75,14 @@ function Books({
           </Container>
         ) : (
           <>
-            <div className="row px-xl-5">
+            <Box className="row px-xl-5">
               {newBooks &&
                 newBooks.map((book) => (
-                  <div
+                  <Box
                     key={book._id}
                     className="col-lg-3 col-md-4 col-sm-6 pb-1"
                   >
-                    <div className="product-item bg-light mb-4">
+                    <Box className="product-item bg-light mb-4">
                       <div className="product-img position-relative overflow-hidden">
                         <img
                           className="img-fluid w-100"
@@ -97,13 +98,13 @@ function Books({
                           </a>
                         </div>
                       </div>
-                      <div className="text-center py-4">
-                        <Link
+                      <Box className="text-center py-4">
+                        {/* <Link
                           className="h4 text-decoration-none text-truncate"
                           to={`/book/${book._id}`}
-                        >
-                          <Typography>{book.name}</Typography>
-                        </Link>
+                        > */}
+                        <Typography>{book.name}</Typography>
+                        {/* </Link> */}
                         <div className="d-flex align-items-center justify-content-center mt-2">
                           <h5>
                             <span style={{ color: "green" }}>&#8358;</span>
@@ -130,9 +131,9 @@ function Books({
                             </Button>
                           </Link>
                         </Stack>
-                      </div>
-                    </div>
-                  </div>
+                      </Box>
+                    </Box>
+                  </Box>
                 ))}
               {error && (
                 <Snackbar
@@ -145,11 +146,11 @@ function Books({
                   </SnackbarAlert>
                 </Snackbar>
               )}
-            </div>
+            </Box>
           </>
         )}
-      </div>
-      <div className="container-fluid pt-5 pb-3">
+      </Box>
+      {/* <div className="container-fluid pt-5 pb-3">
         <h3
           style={{
             width: "auto",
@@ -243,7 +244,7 @@ function Books({
             </div>
           </>
         )}
-      </div>
+      </div> */}
 
       {/* <div className="container-fluid pt-5 pb-3">
         <h2 className="section-title position-relative text-uppercase mx-xl-5 mb-4">

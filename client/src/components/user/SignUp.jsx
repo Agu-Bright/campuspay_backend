@@ -7,11 +7,16 @@ import {
   Box,
   Alert,
   AlertTitle,
+  FormControl,
+  Select,
+  InputLabel,
+  MenuItem,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { LoadingButton } from "@mui/lab";
 import { register, clearErrors } from "../../redux/actions/userActions";
 import { useNavigate } from "react-router-dom";
+import Schools from "../admin/schools.js";
 // import VisibilityIcon from "@mui/icons-material/Visibility";
 // import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 // import { Container } from "@mui/system";
@@ -89,7 +94,8 @@ function SignUp() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: "15vh",
+        marginTop: "30vh",
+        marginBottom: "25vh",
       }}
     >
       <Stack
@@ -136,14 +142,47 @@ function SignUp() {
           onChange={handleChange}
           required
         />
-        <TextField
+        {/* <TextField
           label="Campus"
           name="campus"
           type="text"
           value={user.campus}
           onChange={handleChange}
           required
-        />
+        /> */}
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Campus</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={user.campus}
+            label="Age"
+            name="campus"
+            onChange={handleChange}
+          >
+            {Schools.map((school) => (
+              <MenuItem key={school} value={school}>
+                {school}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        {/* <div className="form-group">
+          <label htmlFor="category_field">Campus</label>
+          <select
+            className="form-control"
+            id="category_field"
+            name="campus"
+            value={user.campus}
+            onChange={handleChange}
+          >
+            {Schools.map((school) => (
+              <option key={school} value={school}>
+                {school}
+              </option>
+            ))}
+          </select>
+        </div> */}
         <TextField
           label="Course of Study"
           name="course"
