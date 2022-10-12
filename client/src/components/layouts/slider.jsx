@@ -22,7 +22,9 @@ function Slider() {
             Sign up now to purchase your books and other academic related items
           </p>
           <div className="btn">
-            <Button>Sign Up</Button>
+            <Button href="/sign-up" size="large" variant="outlined">
+              Sign Up
+            </Button>
           </div>
         </>
       )}

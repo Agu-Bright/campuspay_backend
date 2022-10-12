@@ -136,6 +136,30 @@ export default function PrimarySearchAppBar() {
     }
     navigate("/dashboard");
   };
+  const bookNavigate = () => {
+    if (Drawer) {
+      setDrawer(false);
+    }
+    navigate("/admin/books");
+  };
+  const newBookNavigate = () => {
+    if (Drawer) {
+      setDrawer(false);
+    }
+    navigate("/admin/newBook");
+  };
+  const OrderNavigate = () => {
+    if (Drawer) {
+      setDrawer(false);
+    }
+    navigate("/admin/orders");
+  };
+  const userNavigate = () => {
+    if (Drawer) {
+      setDrawer(false);
+    }
+    navigate("/admin/users");
+  };
   const logoutHandler = () => {
     if (Drawer) {
       setDrawer(false);
@@ -323,6 +347,10 @@ export default function PrimarySearchAppBar() {
           signInNav={() => handleSignIn()}
           adminNav={() => handleAdminNavigate()}
           sellerNav={() => handleSellerNavigate()}
+          adminBookNav={() => bookNavigate()}
+          newBookNavigate={() => newBookNavigate()}
+          OrderNavigate={() => OrderNavigate()}
+          userNavigate={() => userNavigate()}
         />
         <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
           <SnackbarAlert>

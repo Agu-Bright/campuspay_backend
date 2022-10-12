@@ -12,6 +12,7 @@ import {
   ListItemIcon,
   ListItemAvatar,
   Badge,
+  Button,
 } from "@mui/material";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
@@ -19,6 +20,15 @@ import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 import HomeIcon from "@mui/icons-material/Home";
 import { useSelector } from "react-redux";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import EditIcon from "@mui/icons-material/Edit";
+
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Stack } from "@mui/system";
 
 function MuiDrawer({
   open,
@@ -33,6 +43,10 @@ function MuiDrawer({
   orderNav,
   adminNav,
   sellerNav,
+  adminBookNav,
+  newBookNavigate,
+  OrderNavigate,
+  userNavigate,
 }) {
   const { user, loading } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
@@ -66,7 +80,7 @@ function MuiDrawer({
         >
           <Typography>campusPay</Typography>
         </Box>
-        <List>
+        <List sx={{ overflow: "scroll" }}>
           <ListItem disablePadding>
             <ListItemButton onClick={homeNav}>
               <ListItemIcon>
@@ -126,32 +140,145 @@ function MuiDrawer({
 
               <Divider />
               {user?.role === "seller" && (
-                <ListItem disablePadding>
-                  <ListItemButton onClick={sellerNav}>
-                    <ListItemIcon>
-                      <ListItemAvatar>
-                        <Avatar sx={{ backgroundColor: "white" }}>
-                          <DashboardRoundedIcon color="warning" />
-                        </Avatar>
-                      </ListItemAvatar>
-                    </ListItemIcon>
-                    <ListItemText primary="Dashboard" secondary="seller" />
-                  </ListItemButton>
-                </ListItem>
+                <>
+                  <ListItem disablePadding>
+                    <ListItemButton onClick={sellerNav}>
+                      <ListItemIcon>
+                        <ListItemAvatar>
+                          <Avatar sx={{ backgroundColor: "white" }}>
+                            <DashboardRoundedIcon color="warning" />
+                          </Avatar>
+                        </ListItemAvatar>
+                      </ListItemIcon>
+                      <ListItemText primary="Dashboard" secondary="seller" />
+                    </ListItemButton>
+                  </ListItem>
+                  <Divider />
+                  <ListItem disablePadding>
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        color="secondary"
+                      >
+                        <Button color="secondary" startIcon={<MenuBookIcon />}>
+                          <b>Seller actions</b>
+                        </Button>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Stack
+                          spacing={2}
+                          direction="column"
+                          sx={{ alignItems: "start" }}
+                        >
+                          <Button
+                            color="secondary"
+                            variant="outlined"
+                            sx={{ "&:focus": { outline: "none" } }}
+                            onClick={adminBookNav}
+                          >
+                            All Books
+                          </Button>
+                          <Button
+                            color="secondary"
+                            variant="outlined"
+                            sx={{ "&:focus": { outline: "none" } }}
+                            onClick={newBookNavigate}
+                          >
+                            Create Book
+                          </Button>
+                          <Button
+                            color="secondary"
+                            variant="outlined"
+                            sx={{ "&:focus": { outline: "none" } }}
+                            onClick={OrderNavigate}
+                          >
+                            Orders
+                          </Button>
+                        </Stack>
+                      </AccordionDetails>
+                    </Accordion>
+                  </ListItem>
+                </>
               )}
               {user?.role === "admin" && (
-                <ListItem disablePadding>
-                  <ListItemButton onClick={adminNav}>
-                    <ListItemIcon>
-                      <ListItemAvatar>
-                        <Avatar sx={{ backgroundColor: "white" }}>
-                          <DashboardRoundedIcon color="warning" />
-                        </Avatar>{" "}
-                      </ListItemAvatar>
-                    </ListItemIcon>
-                    <ListItemText primary="Dashboard" secondary="admin" />
-                  </ListItemButton>
-                </ListItem>
+                <>
+                  <ListItem disablePadding>
+                    <ListItemButton onClick={adminNav}>
+                      <ListItemIcon>
+                        <ListItemAvatar>
+                          <Avatar sx={{ backgroundColor: "white" }}>
+                            <DashboardRoundedIcon color="warning" />
+                          </Avatar>{" "}
+                        </ListItemAvatar>
+                      </ListItemIcon>
+                      <ListItemText primary="Dashboard" secondary="admin" />
+                    </ListItemButton>
+                  </ListItem>
+                  <Divider />
+                  <ListItem disablePadding>
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                        color="secondary"
+                      >
+                        <ListItemButton>
+                          <ListItemIcon>
+                            <ListItemAvatar>
+                              <Avatar sx={{ backgroundColor: "white" }}>
+                                <EditIcon color="warning" />
+                              </Avatar>{" "}
+                            </ListItemAvatar>
+                          </ListItemIcon>
+                          <ListItemText primary="Admin Actions" />
+                        </ListItemButton>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Stack
+                          spacing={2}
+                          direction="column"
+                          sx={{ alignItems: "start" }}
+                        >
+                          <Button
+                            color="secondary"
+                            variant="outlined"
+                            sx={{ "&:focus": { outline: "none" } }}
+                            onClick={adminBookNav}
+                          >
+                            All Books
+                          </Button>
+                          <Button
+                            color="secondary"
+                            variant="outlined"
+                            sx={{ "&:focus": { outline: "none" } }}
+                            onClick={newBookNavigate}
+                          >
+                            Create Book
+                          </Button>
+                          <Button
+                            color="secondary"
+                            variant="outlined"
+                            sx={{ "&:focus": { outline: "none" } }}
+                            onClick={OrderNavigate}
+                          >
+                            Orders
+                          </Button>
+                          <Button
+                            color="secondary"
+                            variant="outlined"
+                            sx={{ "&:focus": { outline: "none" } }}
+                            onClick={userNavigate}
+                          >
+                            Users
+                          </Button>
+                        </Stack>
+                      </AccordionDetails>
+                    </Accordion>
+                  </ListItem>
+                </>
               )}
               <Divider />
               <ListItem disablePadding>

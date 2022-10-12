@@ -3,8 +3,8 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, FormControl } from "@mui/material";
-
+import { Box, Button, FormControl, IconButton } from "@mui/material";
+// import SearchIcon from '@mui/icons-material/Search';
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -64,23 +64,39 @@ function Searche() {
     setSearch(e.target.value);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.keyCode === 13) {
+      //search post
+      e.preventDefault();
+      if (search) {
+        const newSearch = search.trim();
+        navigate(`/books?search=${newSearch}`);
+        setSearch("");
+      } else {
+        navigate("/");
+      }
+    }
+  };
+
   return (
     <Box sx={{ display: { xs: "none", md: "block" } }}>
       <Search>
-        <FormControl>
-          <SearchIconWrapper>
+        <FormControl onSubmit={handleSearchSubmit}>
+          <SearchIconWrapper on={handleSearchSubmit}>
             <SearchIcon />
           </SearchIconWrapper>
           <StyledInputBase
             type="text"
             name="search"
             value={search}
-            onSubmit={handleSearchSubmit}
             onChange={handleChange}
             placeholder="Search Books.."
             inputProps={{ "aria-label": "search" }}
           />
         </FormControl>
+        <IconButton onClick={() => handleSearchSubmit()}>
+          <SearchIcon />
+        </IconButton>
       </Search>
     </Box>
   );
