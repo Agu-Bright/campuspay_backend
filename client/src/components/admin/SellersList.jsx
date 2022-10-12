@@ -5,31 +5,23 @@ import {
   Typography,
   Box,
   Modal,
-  // Alert,
   Stack,
-  // Snackbar,
   Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  allOrders,
+  allSellers,
   clearErrors,
-  deleteOrder,
-} from "../../redux/actions/orderAction";
+  deleteUser,
+} from "../../redux/actions/userActions";
 import { Container } from "@mui/system";
 import { MDBDataTable } from "mdbreact";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Sidebar from "./Sidebar";
 
-// import { DELETE_BOOKS_RESET } from "../../redux/constants/bookConstants";
-
-// const SnackbarAlert = forwardRef(function SnackbarAlert(props, ref) {
-//   return <Alert severity="success" elevation={6} ref={ref} {...props} />;
-// });
-
-function OrdersList() {
+function SellersList() {
   const style = {
     position: "absolute",
     top: "50%",
@@ -42,62 +34,57 @@ function OrdersList() {
     boxShadow: 24,
     p: 4,
   };
-  const { isDeleted, reset } = useSelector((state) => state.deleteOrder);
-  const { user } = useSelector((state) => state.auth);
+
   const [openM, setOpenM] = useState(false);
   const handleOpenM = () => setOpenM(true);
   const handleCloseM = () => setOpenM(false);
 
-  const [orderId, setOrderId] = useState();
-
   // const [open, setOpen] = useState(false);
-  // const [errorMessage, setErrorMessage] = useState();
+  const [userId, setUserId] = useState();
   const dispatch = useDispatch();
-  const { loading, error, orders } = useSelector((state) => state.allOrders);
-  // const { deleting, isDeleted } = useSelector((state) => state.deleteBook);
+  const { loading, error, sellers } = useSelector((state) => state.allSellers);
+  const { reset } = useSelector((state) => state.DeleteUser);
 
   useEffect(() => {
-    dispatch(allOrders());
+    dispatch(allSellers());
 
     if (error) {
       console.log(error);
       dispatch(clearErrors());
     }
-    if (isDeleted) {
-      console.log("deleted");
-    }
-  }, [dispatch, error, reset, isDeleted]);
+  }, [dispatch, error, reset]);
 
-  // const handleClose = (e, reason) => {
-  //   if (reason === "clickaway") {
-  //     return;
-  //   }
-  //   setOpen(false);
-  // };
   const handleDelete = (id) => {
-    dispatch(deleteOrder(id));
+    dispatch(deleteUser(id));
   };
-  const setOrders = () => {
+
+  //   const handleClose = (e, reason) => {
+  //     if (reason === "clickaway") {
+  //       return;
+  //     }
+  //     setOpen(false);
+  //   };
+  const setSellers = () => {
     const data = {
       columns: [
         {
-          label: "Order ID",
+          label: "User ID",
           field: "id",
           sort: "asc",
         },
         {
-          label: "No of Items",
-          field: "numOfItems",
+          label: "Name",
+          field: "name",
           sort: "asc",
         },
         {
-          label: "Amount",
-          field: "amount",
+          label: "Email",
+          field: "email",
           sort: "asc",
         },
         {
-          label: "Status",
-          field: "status",
+          label: "Role",
+          field: "role",
           sort: "asc",
         },
         {
@@ -108,40 +95,30 @@ function OrdersList() {
       rows: [],
     };
 
-    orders &&
-      orders.forEach((order) => {
+    sellers &&
+      sellers.forEach((seller) => {
         data.rows.push({
-          id: order._id,
-          numOfItems: order.orderItems.length,
-          amount: (
-            <span style={{ color: "green" }}>&#8358;{order.itemsPrice}</span>
-          ),
-          status:
-            order.orderStatus &&
-            String(order.orderStatus).includes("Delivered") ? (
-              <p style={{ color: "green" }}>{order.orderStatus}</p>
-            ) : (
-              <p style={{ color: "red" }}>{order.orderStatus}</p>
-            ),
+          id: seller._id,
+          name: seller.name,
+          email: seller.email,
+          role: seller.role,
           actions: (
             <>
-              <Link to={`/admin/order/${order._id}`}>
+              <Link to={`/admin/user/${seller._id}`}>
                 <IconButton sx={{ "&:focus": { outline: "none" } }}>
                   <AcUnitIcon color="primary" />
                 </IconButton>
               </Link>
-              {user && user.role === "admin" && (
-                <IconButton
-                  color="error"
-                  sx={{ "&:focus": { outline: "none" } }}
-                  onClick={() => {
-                    setOrderId(order._id);
-                    handleOpenM();
-                  }}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              )}
+              <IconButton
+                color="error"
+                sx={{ "&:focus": { outline: "none" } }}
+                onClick={() => {
+                  setUserId(seller._id);
+                  handleOpenM();
+                }}
+              >
+                <DeleteIcon />
+              </IconButton>
             </>
           ),
         });
@@ -181,7 +158,7 @@ function OrdersList() {
                     borderBottomRightRadius: "0px",
                   }}
                 >
-                  All Orders
+                  All Sellers
                 </h2>
                 <Box
                   sx={{
@@ -190,15 +167,15 @@ function OrdersList() {
                   }}
                 >
                   <MDBDataTable
-                    data={setOrders()}
+                    data={setSellers()}
                     className="px-3"
                     bordered
                     striped
                     hover
                   />
                 </Box>
-
-                {/* <Snackbar
+                {/* 
+                <Snackbar
                   open={isDeleted}
                   autoHideDuration={4000}
                   onClose={handleClose}
@@ -219,24 +196,35 @@ function OrdersList() {
                       variant="h6"
                       component="h2"
                     >
-                      Delete Order
+                      Delete User
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                      Are you sure you wan't to delete this order?
+                      Are you sure you wan't to delete this user?
                     </Typography>
-                    <Stack>
+                    <Stack
+                      padding={2}
+                      spacing={2}
+                      direction="row"
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-around",
+                      }}
+                    >
                       <Button
                         sx={{ "&:focus": { outline: "none" } }}
                         onClick={() => setOpenM(false)}
+                        variant="outlined"
                       >
                         cancel
                       </Button>
                       <Button
                         sx={{ "&:focus": { outline: "none" } }}
                         onClick={() => {
-                          handleDelete(orderId);
+                          handleDelete(userId);
                           setOpenM(false);
                         }}
+                        variant="contained"
                       >
                         Yes
                       </Button>
@@ -252,4 +240,4 @@ function OrdersList() {
   );
 }
 
-export default OrdersList;
+export default SellersList;

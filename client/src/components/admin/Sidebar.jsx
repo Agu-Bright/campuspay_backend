@@ -88,11 +88,11 @@ const Sidebar = () => {
                 </Link>
               </li>
             )}
-            {/* <li>
-              <Link to="/admin/review">
-                <i className="fa fa-star"></i> Users
+            <li>
+              <Link to="/admin/sellers">
+                <i className="fa fa-star"></i> Sellers
               </Link>
-            </li> */}
+            </li>
           </List>
         </nav>
       </Box>

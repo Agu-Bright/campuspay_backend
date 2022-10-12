@@ -134,7 +134,7 @@ function Dashboard() {
                   <div className="card-body">
                     <div className="text-center card-font-size">
                       Users
-                      <br /> <b>{users && users.length}</b>
+                      <br /> {users && <b>{users.length}</b>}
                     </div>
                   </div>
                   <a

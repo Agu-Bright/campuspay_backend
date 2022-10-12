@@ -45,6 +45,15 @@ const userSchema = mongoose.Schema({
     type: String,
     default: "user",
   },
+  bank: String,
+  accountName: String,
+  accountNumber: String,
+  requested: {
+    type: Boolean,
+    default: false,
+  },
+  phoneNumber: String,
+
   createdAt: {
     type: Date,
     default: Date.now,

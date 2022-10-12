@@ -24,10 +24,17 @@ import {
   ALL_USERS_REQUEST,
   ALL_USERS_SUCCESS,
   ALL_USERS_FAIL,
+  ALL_SELLERS_REQUEST,
+  ALL_SELLERS_SUCCESS,
+  ALL_SELLERS_FAIL,
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_FAIL,
   UPDATE_USER_RESET,
+  REGISTER_SELLER_REQUEST,
+  REGISTER_SELLER_SUCCESS,
+  REGISTER_SELLER_FAIL,
+  REGISTER_SELLER_RESET,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAIL,
@@ -171,6 +178,19 @@ export const allUsers = () => async (dispatch) => {
   }
 };
 
+export const allSellers = () => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_SELLERS_REQUEST });
+    const { data } = await axios.get("/api/v1/admin/sellers", {
+      withCredentials: true,
+      credentials: "include",
+    });
+    dispatch({ type: ALL_SELLERS_SUCCESS, payload: data.sellers });
+  } catch (error) {
+    dispatch({ type: ALL_SELLERS_FAIL, payload: error.response.data.message });
+  }
+};
+
 export const updateUser = (id, formData) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_USER_REQUEST });
@@ -185,6 +205,24 @@ export const updateUser = (id, formData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_USER_FAIL,
+      payload: error.message,
+    });
+  }
+};
+export const registerSeller = (formData) => async (dispatch) => {
+  try {
+    dispatch({ type: REGISTER_SELLER_REQUEST });
+    const { data } = await axios.put(`/api/v1/me/seller`, formData, {
+      withCredentials: true,
+      credentials: "include",
+    });
+    dispatch({ type: REGISTER_SELLER_SUCCESS, payload: data.success });
+    setTimeout(() => {
+      dispatch({ type: REGISTER_SELLER_RESET });
+    }, 1500);
+  } catch (error) {
+    dispatch({
+      type: REGISTER_SELLER_FAIL,
       payload: error.message,
     });
   }

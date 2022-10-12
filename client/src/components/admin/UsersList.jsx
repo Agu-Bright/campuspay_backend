@@ -27,7 +27,7 @@ function UsersList() {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    width: { xs: 200, md: 400 },
     bgcolor: "background.paper",
     border: "2px solid green",
     borderRadius: "10px",
@@ -160,13 +160,20 @@ function UsersList() {
                 >
                   All Users
                 </h2>
-                <MDBDataTable
-                  data={setUsers()}
-                  className="px-3"
-                  bordered
-                  striped
-                  hover
-                />
+                <Box
+                  sx={{
+                    width: "auto",
+                    overflowX: "scroll",
+                  }}
+                >
+                  <MDBDataTable
+                    data={setUsers()}
+                    className="px-3"
+                    bordered
+                    striped
+                    hover
+                  />
+                </Box>
                 {/* 
                 <Snackbar
                   open={isDeleted}

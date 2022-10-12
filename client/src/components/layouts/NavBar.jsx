@@ -48,6 +48,7 @@ const SnackbarAlert = React.forwardRef(function SnackbarAlert(props, ref) {
 });
 
 export default function PrimarySearchAppBar() {
+  // const {user} =  useSelector(state => state.auth)
   const [Drawer, setDrawer] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(null);
@@ -159,6 +160,12 @@ export default function PrimarySearchAppBar() {
       setDrawer(false);
     }
     navigate("/admin/users");
+  };
+  const sellerNavigate = () => {
+    if (Drawer) {
+      setDrawer(false);
+    }
+    navigate("/admin/sellers");
   };
   const logoutHandler = () => {
     if (Drawer) {
@@ -351,6 +358,7 @@ export default function PrimarySearchAppBar() {
           newBookNavigate={() => newBookNavigate()}
           OrderNavigate={() => OrderNavigate()}
           userNavigate={() => userNavigate()}
+          sellerNavigate={() => sellerNavigate()}
         />
         <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
           <SnackbarAlert>
@@ -359,12 +367,17 @@ export default function PrimarySearchAppBar() {
         </Snackbar>
 
         <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
-          <Typography
-            variant="body2"
-            sx={{ backgroundColor: "#FFF8F0", paddingLeft: "5px" }}
-          >
-            Become a <Link sx={{ color: "white" }}>seller</Link>
-          </Typography>
+          {user && user.role === "user" && !user.requested && (
+            <Typography
+              variant="body2"
+              sx={{ backgroundColor: "#FFF8F0", paddingLeft: "5px" }}
+            >
+              Become a{" "}
+              <Link to="me/seller" sx={{ color: "white" }}>
+                seller
+              </Link>
+            </Typography>
+          )}
           <Toolbar>
             <Box width="80px" height="80px">
               <img

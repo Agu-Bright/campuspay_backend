@@ -35,7 +35,9 @@ import UpdateBook from "./components/admin/UpdateBook";
 import OrdersList from "./components/admin/ordersList";
 import ProcessOrder from "./components/admin/ProcessOrder";
 import UsersList from "./components/admin/UsersList";
+import SellersList from "./components/admin/SellersList";
 import UpdateUser from "./components/admin/UpdateUser";
+import Seller from "./components/user/Seller";
 
 const App = () => {
   useEffect(() => {
@@ -78,6 +80,8 @@ const App = () => {
           </Route>
           <Route path="/admin/user/:id" element={<UpdateUser />} />
           <Route path="/payment/verify" element={<Payment />} />
+          <Route path="/me/seller" element={<Seller />} />
+          <Route path="/admin/sellers" element={<SellersList />} />
         </Routes>
         <Footer />
       </div>

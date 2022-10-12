@@ -38,6 +38,10 @@ function UpdateProfile() {
   const [email, setemail] = useState("");
   const [campus, setCampus] = useState("");
   const [course, setCourse] = useState("");
+  const [bank, setBank] = useState("");
+  const [accountName, setAccountName] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(
     "/images/default_Avater.png"
@@ -55,6 +59,12 @@ function UpdateProfile() {
       setCourse(user?.courseOfStudy);
       setCampus(user?.campus);
       setAvatarPreview(user?.avatar.url);
+    }
+    if (user.requested) {
+      setBank(user?.bank);
+      setAccountName(user?.accountName);
+      setAccountNumber(user?.accountNumber);
+      setPhoneNumber(user?.phoneNumber);
     }
     if (isUpdated) {
       setOpen(true);
@@ -100,7 +110,8 @@ function UpdateProfile() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: "15vh",
+        marginTop: "60vh",
+        marginBottom: "40vh",
       }}
     >
       {loading ? (
@@ -155,6 +166,48 @@ function UpdateProfile() {
             value={course}
             onChange={(e) => setCourse(e.target.value)}
           />
+
+          {user && user.requested && (
+            <>
+              <TextField
+                sx={{ margin: "10px" }}
+                label="Bank Name"
+                name="bank"
+                type="text"
+                value={bank}
+                onChange={handleChange}
+                required
+              />
+
+              <TextField
+                sx={{ margin: "10px" }}
+                label="Account Number"
+                type="text"
+                name="accountNumber"
+                value={accountNumber}
+                onChange={handleChange}
+                required
+              />
+              <TextField
+                sx={{ margin: "10px" }}
+                label="Account Name"
+                type="text"
+                name="accountName"
+                value={accountName}
+                onChange={handleChange}
+                required
+              />
+              <TextField
+                sx={{ margin: "10px" }}
+                label="Phone Number"
+                type="text"
+                name="phoneNumber"
+                value={phoneNumber}
+                onChange={handleChange}
+                required
+              />
+            </>
+          )}
           <Stack direction="row" spacing={2}>
             <label htmlFor="avatar_upload">Avatar</label>
             <div className="d-flex align-items-center">

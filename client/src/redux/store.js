@@ -18,6 +18,7 @@ import {
   deleteUserReducer,
   userDetailsReducer,
   updateUserReducer,
+  allSellersReducer,
 } from "./reducers/userReducer";
 import { cartReducer } from "./reducers/cartReducer";
 import {
@@ -39,6 +40,7 @@ const reducer = combineReducers({
   reviews: getBookReviewReducer,
   auth: userReducer,
   user: usersReducer,
+  allSellers: allSellersReducer,
   allUsers: allUsersReducer,
   userDetails: userDetailsReducer,
   updateUser: updateUserReducer,

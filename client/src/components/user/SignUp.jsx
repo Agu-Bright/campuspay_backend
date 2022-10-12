@@ -117,6 +117,7 @@ function SignUp() {
             </Alert>
           </>
         )}
+
         <TextField
           label="first Name"
           type="text"
@@ -142,14 +143,6 @@ function SignUp() {
           onChange={handleChange}
           required
         />
-        {/* <TextField
-          label="Campus"
-          name="campus"
-          type="text"
-          value={user.campus}
-          onChange={handleChange}
-          required
-        /> */}
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Campus</InputLabel>
           <Select
@@ -167,22 +160,6 @@ function SignUp() {
             ))}
           </Select>
         </FormControl>
-        {/* <div className="form-group">
-          <label htmlFor="category_field">Campus</label>
-          <select
-            className="form-control"
-            id="category_field"
-            name="campus"
-            value={user.campus}
-            onChange={handleChange}
-          >
-            {Schools.map((school) => (
-              <option key={school} value={school}>
-                {school}
-              </option>
-            ))}
-          </select>
-        </div> */}
         <TextField
           label="Course of Study"
           name="course"

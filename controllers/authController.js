@@ -264,6 +264,37 @@ const adminUpdateUserDetails = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+//BECOME_A_SELLER => /api/v1/sell
+const sellerRequest = catchAsyncErrors(async (req, res, next) => {
+  const update = {
+    bank: req.body.bank,
+    accountName: req.body.accountName,
+    accountNumber: req.body.accountNumber,
+    phoneNumber: req.body.phoneNumber,
+    requested: true,
+  };
+  const user = await User.findByIdAndUpdate(req.user._id, update, {
+    new: true,
+    runValidator: false,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+//admin get sellers
+const getSellers = catchAsyncErrors(async (req, res, next) => {
+  const sellers = await User.find({ requested: true });
+
+  res.status(200).json({
+    success: true,
+    sellers,
+  });
+});
+
 //DELETE USER => /api/v1/admin/user/:id
 const deleteUser = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.params.id);
@@ -292,4 +323,6 @@ module.exports = {
   adminGetUserDetail,
   adminUpdateUserDetails,
   deleteUser,
+  sellerRequest,
+  getSellers,
 };

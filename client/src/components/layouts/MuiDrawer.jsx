@@ -47,6 +47,7 @@ function MuiDrawer({
   newBookNavigate,
   OrderNavigate,
   userNavigate,
+  sellerNavigate,
 }) {
   const { user, loading } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
@@ -273,6 +274,14 @@ function MuiDrawer({
                             onClick={userNavigate}
                           >
                             Users
+                          </Button>
+                          <Button
+                            color="secondary"
+                            variant="outlined"
+                            sx={{ "&:focus": { outline: "none" } }}
+                            onClick={sellerNavigate}
+                          >
+                            Sellers
                           </Button>
                         </Stack>
                       </AccordionDetails>

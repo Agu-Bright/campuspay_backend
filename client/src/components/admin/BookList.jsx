@@ -34,7 +34,7 @@ function BookList() {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    width: { xs: 200, md: 400 },
     bgcolor: "background.paper",
     border: "2px solid green",
     borderRadius: "10px",
@@ -153,33 +153,38 @@ function BookList() {
         </div>
         <div className="col-12 col-md-10" style={{ marginTop: "15vh" }}>
           <>
-            {loading ? (
-              <Container
-                fixed
-                sx={{
-                  height: "60vh",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <CircularProgress color="warning" size="small" />
-              </Container>
-            ) : (
-              <>
-                <h2
-                  style={{
-                    width: "auto",
-                    paddingLeft: "6px",
+            <h2
+              style={{
+                width: "auto",
+                paddingLeft: "6px",
 
-                    borderLeft: "10px solid #48e5c2",
-                    borderBottom: "0.1px solid #48e5c2",
-                    borderRadius: "10px",
-                    borderBottomRightRadius: "0px",
+                borderLeft: "10px solid #48e5c2",
+                borderBottom: "0.1px solid #48e5c2",
+                borderRadius: "10px",
+                borderBottomRightRadius: "0px",
+              }}
+            >
+              All Books
+            </h2>
+            <Box
+              sx={{
+                width: "auto",
+                overflowX: "scroll",
+              }}
+            >
+              {loading ? (
+                <Container
+                  fixed
+                  sx={{
+                    height: "60vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
-                  All Books
-                </h2>
+                  <CircularProgress color="warning" size="small" />
+                </Container>
+              ) : (
                 <MDBDataTable
                   data={setBooks()}
                   className="px-3"
@@ -187,54 +192,50 @@ function BookList() {
                   striped
                   hover
                 />
+              )}
+            </Box>
 
-                <Snackbar
-                  open={isDeleted}
-                  autoHideDuration={4000}
-                  // onClose={handleClose}
-                >
-                  <SnackbarAlert>
-                    <Typography>Deleted</Typography>
-                  </SnackbarAlert>
-                </Snackbar>
-                <Modal
-                  open={openM}
-                  onClose={handleCloseM}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box sx={style}>
-                    <Typography
-                      id="modal-modal-title"
-                      variant="h6"
-                      component="h2"
-                    >
-                      Delete Book
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                      Are you sure you wan't to delete this book?
-                    </Typography>
-                    <Stack>
-                      <Button
-                        sx={{ "&:focus": { outline: "none" } }}
-                        onClick={() => setOpenM(false)}
-                      >
-                        cancel
-                      </Button>
-                      <Button
-                        sx={{ "&:focus": { outline: "none" } }}
-                        onClick={() => {
-                          handleDelete(bookId);
-                          setOpenM(false);
-                        }}
-                      >
-                        Yes
-                      </Button>
-                    </Stack>
-                  </Box>
-                </Modal>
-              </>
-            )}
+            <Snackbar
+              open={isDeleted}
+              autoHideDuration={4000}
+              // onClose={handleClose}
+            >
+              <SnackbarAlert>
+                <Typography>Deleted</Typography>
+              </SnackbarAlert>
+            </Snackbar>
+            <Modal
+              open={openM}
+              onClose={handleCloseM}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Delete Book
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  Are you sure you wan't to delete this book?
+                </Typography>
+                <Stack>
+                  <Button
+                    sx={{ "&:focus": { outline: "none" } }}
+                    onClick={() => setOpenM(false)}
+                  >
+                    cancel
+                  </Button>
+                  <Button
+                    sx={{ "&:focus": { outline: "none" } }}
+                    onClick={() => {
+                      handleDelete(bookId);
+                      setOpenM(false);
+                    }}
+                  >
+                    Yes
+                  </Button>
+                </Stack>
+              </Box>
+            </Modal>
           </>
         </div>
       </div>

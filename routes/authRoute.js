@@ -13,6 +13,8 @@ const {
   adminGetUserDetail,
   adminUpdateUserDetails,
   deleteUser,
+  sellerRequest,
+  getSellers,
 } = require("../controllers/authController");
 const {
   authMiddleware,
@@ -28,9 +30,16 @@ router.put("/password/reset/:token", resetPassword);
 router.get("/me", authMiddleware, getUserDetails);
 router.put("/password/update", authMiddleware, updatePassword);
 router.put("/me/update", authMiddleware, updateUserDetails);
+router.put("/me/seller", authMiddleware, authorizeRoles("user"), sellerRequest);
 
 //admin routes
 router.get("/admin/users", authMiddleware, authorizeRoles("admin"), getUsers);
+router.get(
+  "/admin/sellers",
+  authMiddleware,
+  authorizeRoles("admin"),
+  getSellers
+);
 router.get(
   "/admin/user/:id",
   authMiddleware,

@@ -80,7 +80,19 @@ function UpdateUser() {
             ) : (
               <div className="row wrapper">
                 <div className="col-10 col-lg-5">
-                  <h1 className="mt-2 mb-5">Update User</h1>
+                  <h2
+                    style={{
+                      width: "auto",
+                      paddingLeft: "6px",
+
+                      borderLeft: "10px solid #48e5c2",
+                      borderBottom: "0.1px solid #48e5c2",
+                      borderRadius: "10px",
+                      borderBottomRightRadius: "0px",
+                    }}
+                  >
+                    {user && user.requested ? "Update User" : "User Detail"}
+                  </h2>
 
                   <Avatar
                     src={user && user?.avatar?.url}
@@ -117,33 +129,35 @@ function UpdateUser() {
                     <Typography>{user && user.role}</Typography>
                   </div>
 
-                  <form className="shadow-lg">
-                    <div className="form-group">
-                      <label htmlFor="role_field">Role</label>
+                  {user && user?.requested && (
+                    <form className="shadow-lg">
+                      <div className="form-group">
+                        <label htmlFor="role_field">Role</label>
 
-                      <select
-                        id="role_field"
-                        className="form-control"
-                        name="role"
-                        value={role}
-                        onChange={(e) => setRole(e.target.value)}
+                        <select
+                          id="role_field"
+                          className="form-control"
+                          name="role"
+                          value={role}
+                          onChange={(e) => setRole(e.target.value)}
+                        >
+                          <option value="user">user</option>
+                          <option value="seller">seller</option>
+                        </select>
+                      </div>
+                      <LoadingButton
+                        id="login_button"
+                        type="submit"
+                        color="primary"
+                        variant="contained"
+                        loading={updating ? true : false}
+                        sx={{ "&:focus": { outline: "none" } }}
+                        onClick={() => updateUserHandler(user._id)}
                       >
-                        <option value="user">user</option>
-                        <option value="seller">seller</option>
-                      </select>
-                    </div>
-                    <LoadingButton
-                      id="login_button"
-                      type="submit"
-                      color="primary"
-                      variant="contained"
-                      loading={updating ? true : false}
-                      sx={{ "&:focus": { outline: "none" } }}
-                      onClick={() => updateUserHandler(user._id)}
-                    >
-                      Update Status
-                    </LoadingButton>
-                  </form>
+                        Update Status
+                      </LoadingButton>
+                    </form>
+                  )}
                 </div>
               </div>
             )}
