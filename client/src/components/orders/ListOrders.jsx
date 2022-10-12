@@ -113,13 +113,20 @@ function ListOrders() {
           <Typography>ORDERS....</Typography>
         </Container>
       ) : (
-        <MDBDataTable
-          data={setOrders()}
-          className="px-3"
-          bordered
-          striped
-          hover
-        />
+        <Box
+          sx={{
+            width: "auto",
+            overflowX: "scroll",
+          }}
+        >
+          <MDBDataTable
+            data={setOrders()}
+            className="px-3"
+            bordered
+            striped
+            hover
+          />
+        </Box>
       )}
     </Box>
   );
