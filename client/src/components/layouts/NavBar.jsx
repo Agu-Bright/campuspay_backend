@@ -1,4 +1,5 @@
 import * as React from "react";
+
 // import { styled, alpha } from "@mui/material/styles";
 import {
   Stack,
@@ -22,20 +23,14 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-// import InputBase from "@mui/material/InputBase";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 
 import Badge from "@mui/material/Badge";
-// import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-// import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-// import MailIcon from "@mui/icons-material/Mail";
-// import NotificationsIcon from "@mui/icons-material/Notifications";
-// import MoreIcon from "@mui/icons-material/MoreVert";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Searche from "./Search";
@@ -286,7 +281,7 @@ export default function PrimarySearchAppBar() {
               <ListItemButton onClick={handleProfileNav}>
                 <ListItemIcon>
                   <ListItemAvatar>
-                    <Avatar alt={user.name} src={user.avatar.url} />
+                    <Avatar alt={user.name} src={user?.avatar?.url} />
                   </ListItemAvatar>
                 </ListItemIcon>
                 <ListItemText primary={user.name} secondary="view Profile" />
@@ -389,12 +384,12 @@ export default function PrimarySearchAppBar() {
             </Box>
 
             <Searche />
-            <Button
+            {/* <Button
               onClick={() => navigate("/books")}
               sx={{ display: { xs: "none", md: "block" } }}
             >
               Books
-            </Button>
+            </Button> */}
             <Box sx={{ flexGrow: 1 }} />
             <Box
               sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
@@ -426,14 +421,14 @@ export default function PrimarySearchAppBar() {
                 color="inherit"
               >
                 {user && !loading ? (
-                  <Avatar alt={user.name} src={user.avatar.url} />
+                  <Avatar alt={user.name} src={user?.avatar?.url} />
                 ) : (
                   <AccountCircle />
                 )}
               </IconButton>
               {user && !loading && (
                 <Typography sx={{ margin: "4px" }} variant="body1">
-                  Welcome!! {user.name.split(" ")[0]}
+                  Welcome!! {user?.name?.split(" ")[0]}
                 </Typography>
               )}
             </Box>

@@ -26,7 +26,7 @@ function UpdateBook() {
   const [author, setAuthor] = useState("");
   const [pageCount, setPageCount] = useState("");
   const [stock, setStock] = useState(0);
-  const [location, setLocation] = useState(0);
+  const [location, setLocation] = useState("");
   const [images, setImages] = useState([]);
   const [status, setStatus] = useState("");
 
@@ -54,7 +54,7 @@ function UpdateBook() {
     setPageCount(book?.book?.pageCount);
     setSeller(book?.book?.seller);
     setStock(book?.book?.stock);
-    setLocation(book?.book?.loaction);
+    setLocation(book?.book?.location);
     setStatus(book?.book?.status);
     setOldImages(book?.book?.images);
 

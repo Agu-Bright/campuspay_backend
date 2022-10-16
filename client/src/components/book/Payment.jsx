@@ -15,6 +15,7 @@ function useQuery() {
 function Payment() {
   const [message, setMessage] = useState("");
   const query = useQuery();
+  const { user } = useSelector((state) => state.auth);
   // const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ function Payment() {
             id: id,
             status: data.status,
           },
+          orderId: id,
           paidAt: data.paidAt,
           itemsPrice: data.metadata.itemPrice,
           taxPrice: Number(data.fees) / 100,
@@ -53,14 +55,14 @@ function Payment() {
         };
         //now save the data in the database
         dispatch(placeOrder(formData));
-        localStorage.removeItem("cartItems");
+        // localStorage.removeItem("cartItems");
         navigate("/orders/me");
       } catch (error) {
         setMessage(error);
       }
     }
     verifyPayment();
-  }, [error, dispatch, cartItems, id, shippingInfo, navigate]);
+  });
 
   return (
     <>

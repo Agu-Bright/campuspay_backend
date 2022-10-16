@@ -19,7 +19,9 @@ function ConfirmOrder() {
 
   const taxPrice = Number((0.05 * itemsPrice).toFixed(2));
 
-  const totalPrice = (itemsPrice + shippingPrice + taxPrice).toFixed(2);
+  const totalPrice = Math.trunc(
+    (itemsPrice + shippingPrice + taxPrice).toFixed(2)
+  );
   const processToPayment = async () => {
     const cost = {
       itemsPrice: itemsPrice.toFixed(2),

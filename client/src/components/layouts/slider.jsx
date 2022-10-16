@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, Box } from "@mui/material";
 import { Container } from "@mui/system";
 
 function Slider() {
   const [state, setState] = useState(true);
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     setState((prev) => !prev);
-  //   }, 1000);
-  // }, [state]);
   return (
-    <section id="home">
+    <Box id="home" sx={{ width: "90%", overflow: "hidden" }}>
       {state === true && (
         <>
-          <h2>
+          <Typography variant="h3" sx={{ color: "white" }}>
             WELCOME TO <span class="head">CAMPUSPAY</span>{" "}
-          </h2>
+          </Typography>
 
           <p>
             Sign up now to purchase your books and other academic related items
@@ -40,7 +35,7 @@ function Slider() {
           </div>
         </>
       )}
-    </section>
+    </Box>
   );
 }
 

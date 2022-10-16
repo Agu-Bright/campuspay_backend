@@ -19,6 +19,7 @@ const newOrder = catchAsyncErrors(async (req, res, next) => {
     taxPrice,
     shippingPrice,
     paymentInfo,
+    orderId,
   } = req.body;
 
   const order = await Order.create({
@@ -29,6 +30,7 @@ const newOrder = catchAsyncErrors(async (req, res, next) => {
     shippingPrice,
     paymentInfo,
     user: req.user._id,
+    orderId,
   });
 
   res.status(200).json({
@@ -54,7 +56,7 @@ const getSingleOrder = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-//Get logged in user orders => api/v1/order/:id
+//Get logged in user orders => api/v1/orders
 const myOrders = catchAsyncErrors(async (req, res, next) => {
   const orders = await Order.find({ user: req.user.id });
 
@@ -115,6 +117,12 @@ const deleteOrder = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
   });
+});
+
+//seller get all orders
+const sellerOrders = catchAsyncErrors(async (req, res, next) => {
+  //get all orders
+  //
 });
 
 module.exports = {

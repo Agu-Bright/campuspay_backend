@@ -25,7 +25,7 @@ function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [Message, setMessage] = useState(null);
-  const { loading, isAuthenticated, error } = useSelector(
+  const { loading, isAuthenticated, regError } = useSelector(
     (state) => state.auth
   );
   const [user, setUser] = useState({
@@ -78,14 +78,14 @@ function SignUp() {
   };
 
   useEffect(() => {
-    if (error) {
-      setMessage(error);
+    if (regError) {
+      setMessage(regError);
       clearErrors();
     }
     if (isAuthenticated) {
       navigate("/");
     }
-  }, [isAuthenticated, navigate, error]);
+  }, [isAuthenticated, navigate, regError]);
 
   return (
     <Box

@@ -48,7 +48,7 @@ import {
   CLEAR_ERRORS,
 } from "../constants/userConstants";
 
-export const userReducer = (state = { user: null }, action) => {
+export const userReducer = (state = { user: {} }, action) => {
   switch (action.type) {
     case REGISTER_USER_REQUEST:
     case LOAD_USER_REQUEST:
@@ -56,7 +56,6 @@ export const userReducer = (state = { user: null }, action) => {
       return {
         loading: true,
         isAuthenticated: false,
-        user: null,
       };
 
     case LOGOUT_SUCCESS:
@@ -80,14 +79,22 @@ export const userReducer = (state = { user: null }, action) => {
         ...state,
         error: action.payload,
       };
-    case REGISTER_USER_FAIL:
     case LOGIN_FAIL:
       return {
         ...state,
         loading: false,
         isAuthenticated: false,
         user: null,
-        error: action.payload,
+        logError: action.payload,
+      };
+
+    case REGISTER_USER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: false,
+        user: null,
+        regError: action.payload,
       };
     case LOAD_USER_FAIL:
       return {

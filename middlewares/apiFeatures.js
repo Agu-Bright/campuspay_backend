@@ -28,7 +28,7 @@ class ApiFeatures {
     const removeField = ["search", "limit", "page"];
     removeField.forEach((field) => delete queryCopy[field]);
 
-    //advance filter form price, rating, etc
+    //advance filter form price, rating,location etc
     let queryStr = JSON.stringify(queryCopy); // price: [gte: 1], price:[lte: 1000], rating: [get: 3]
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, (match) => `$${match}`);
     this.query = this.query.find(JSON.parse(queryStr)); //find({price: [gte: 20]})

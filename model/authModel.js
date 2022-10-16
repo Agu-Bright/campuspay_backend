@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
   email: {
     type: String,
     required: [true, "Please enter your email"],
-    unique: true,
+    unique: [true, "This user already exists"],
     validate: [validator.isEmail, "Please Enter a valid email address"],
   },
   password: {
@@ -23,11 +23,9 @@ const userSchema = mongoose.Schema({
   avatar: {
     public_id: {
       type: String,
-      required: [true, "public id required"],
     },
     url: {
       type: String,
-      required: [true, "url required"],
     },
   },
   campus: {

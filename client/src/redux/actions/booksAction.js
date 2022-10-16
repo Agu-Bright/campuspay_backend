@@ -34,13 +34,32 @@ import {
   UPDATE_BOOKS_RESET,
 } from "../constants/bookConstants";
 
-export const getBooks = (searchQuery, page) => async (dispatch) => {
+export const getBooks = (searchQuery, page, location) => async (dispatch) => {
   try {
     dispatch({ type: ALL_BOOKS_REQUEST });
-    let link = `/api/v1/books?page=${page}`;
+    let link = `/api/v1/books?page=${page}&&location=${location}`;
     if (searchQuery) {
-      link = `/api/v1/books?search=${searchQuery}`;
+      link = `/api/v1/books?search=${searchQuery}&&location=${location}`;
     }
+    const { data } = await axios.get(link);
+    dispatch({
+      type: ALL_BOOKS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ALL_BOOKS_FAIL,
+      payload: error.message,
+    });
+  }
+};
+export const getBooksLocation = (location) => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_BOOKS_REQUEST });
+    let link = `/api/v1/books?location=${location}`;
+    // if (searchQuery) {
+    //   link = `/api/v1/books?search=${searchQuery}&&location=${location}`;
+    // }
     const { data } = await axios.get(link);
     dispatch({
       type: ALL_BOOKS_SUCCESS,

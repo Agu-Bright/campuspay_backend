@@ -24,7 +24,9 @@ function Books() {
   // const page = query.get("page") || 1;
   const searchQuery = query.get("search");
   const dispatch = useDispatch();
+  // const { user } = useSelector((state) => state.auth);
   // const navigate = useNavigate();
+  // const [location, setLocation] = useState("");
   const [page, setPage] = useState(1);
   const { loading, books, numberOfPages, error, searchNumberOfPages } =
     useSelector((state) => state.books);
@@ -33,6 +35,9 @@ function Books() {
     if (error) {
       dispatch(clearErrors());
     }
+    // if (user) {
+    //   setLocation(user.location);
+    // }
   }, [dispatch, searchQuery, page, error]);
   const handleChange = (e, value) => {
     setPage(value);
@@ -70,11 +75,7 @@ function Books() {
             }}
           >
             <div className="row pb-3">
-              <div className="col-12 pb-1">
-                {/* <div className="d-flex align-items-center justify-content-between mb-4">
-                 
-                </div> */}
-              </div>
+              <div className="col-12 pb-1"></div>
               {books &&
                 books.map((book) => (
                   <Box
@@ -97,14 +98,6 @@ function Books() {
                           onClick={() => navigate(`/book/${book._id}`)}
                           // style={{ maxHeight: "300px" }}
                         />
-                        {/* <div className="product-action">
-                          <a
-                            className="btn btn-outline-dark btn-square"
-                            href="/"
-                          >
-                            <i className="fa fa-shopping-cart"></i>
-                          </a>
-                        </div> */}
                       </div>
                       <div
                         className="text-center py-4"
@@ -152,38 +145,20 @@ function Books() {
                     </Box>
                   </Box>
                 ))}
+              {books && books.length <= 0 && (
+                <Box
+                  sx={{
+                    marginTop: "20vh",
+                    marginBottom: "40vh",
+                    display: "flex",
+                    alignItem: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  Resourse Not Found
+                </Box>
+              )}
 
-              {/* <div className="col-12">
-                <nav>
-                  <ul className="pagination justify-content-center">
-                    <li className="page-item disabled">
-                      <a className="page-link" href="/">
-                        Previous
-                      </a>
-                    </li>
-                    <li className="page-item active">
-                      <a className="page-link" href="/">
-                        1
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="/">
-                        2
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="/">
-                        3
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a className="page-link" href="/">
-                        Next
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-              </div> */}
               <Stack
                 spacing={2}
                 sx={{

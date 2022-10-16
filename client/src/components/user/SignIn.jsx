@@ -22,7 +22,7 @@ function Signin() {
   const dispatch = useDispatch();
   // const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState(null);
-  const { loading, isAuthenticated, error } = useSelector(
+  const { loading, isAuthenticated, logError } = useSelector(
     (state) => state.auth
   );
   const [formData, setFormData] = useState({
@@ -43,14 +43,14 @@ function Signin() {
   // const redirect = location.search ? location.search.split("=")[1] : "/";
 
   useEffect(() => {
-    if (error) {
-      setMessage(error);
+    if (logError) {
+      setMessage(logError);
       clearErrors();
     }
     if (isAuthenticated) {
       navigate("/");
     }
-  }, [isAuthenticated, navigate, error]);
+  }, [isAuthenticated, navigate, logError]);
 
   return (
     <Box

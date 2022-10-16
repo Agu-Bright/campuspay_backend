@@ -68,7 +68,6 @@ const App = () => {
             <Route path="/shipping" element={<Shipping />} />
             <Route path="/confirm" element={<ConfirmOrder />} />
 
-            <Route path="/orders/me" element={<ListOrders />} />
             <Route path="/order/:id" element={<OrderDetails />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/admin/books" element={<BookList />} />
@@ -78,6 +77,7 @@ const App = () => {
             <Route path="/admin/order/:id" element={<ProcessOrder />} />
             <Route path="/admin/users" element={<UsersList />} />
           </Route>
+          <Route path="/orders/me" element={<ListOrders />} />
           <Route path="/admin/user/:id" element={<UpdateUser />} />
           <Route path="/payment/verify" element={<Payment />} />
           <Route path="/me/seller" element={<Seller />} />

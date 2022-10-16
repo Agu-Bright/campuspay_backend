@@ -14,6 +14,7 @@ import {
   Badge,
   Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
@@ -24,7 +25,6 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import EditIcon from "@mui/icons-material/Edit";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -49,6 +49,7 @@ function MuiDrawer({
   userNavigate,
   sellerNavigate,
 }) {
+  const navigate = useNavigate();
   const { user, loading } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
 
@@ -68,19 +69,32 @@ function MuiDrawer({
         width="300px"
         textAlign="center"
         role="presentation"
-        sx={{ height: "100vh", padding: "0" }}
+        sx={{
+          height: "100vh",
+          padding: "0",
+          justifyContent: "center",
+        }}
       >
         <Box
           sx={{
-            height: "9.35vh",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "#48e5c2",
           }}
         >
-          <Typography>campusPay</Typography>
+          <Box width="80px" height="80px">
+            <img
+              onClick={() => navigate("/")}
+              src="/logo.png"
+              alt="logo"
+              style={{
+                width: "80px",
+                height: "80px",
+              }}
+            />
+          </Box>
         </Box>
+
         <List sx={{ overflow: "scroll" }}>
           <ListItem disablePadding>
             <ListItemButton onClick={homeNav}>
@@ -294,7 +308,7 @@ function MuiDrawer({
                 <ListItemButton onClick={profileNav}>
                   <ListItemIcon>
                     <ListItemAvatar>
-                      <Avatar alt={user.name} src={user.avatar.url} />
+                      <Avatar alt={user.name} src={user?.avatar?.url} />
                     </ListItemAvatar>
                   </ListItemIcon>
                   <ListItemText primary={user.name} secondary="view Profile" />

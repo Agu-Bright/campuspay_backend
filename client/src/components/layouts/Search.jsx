@@ -36,7 +36,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: { xs: "2px", md: `calc(1em + ${theme.spacing(4)})` },
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
@@ -49,6 +49,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function Searche() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (search) {
@@ -79,24 +80,29 @@ function Searche() {
   };
 
   return (
-    <Box sx={{ display: { xs: "none", md: "block" } }}>
+    <Box sx={{ width: { xs: "15ch", md: "20ch" } }}>
       <Search>
-        <FormControl onSubmit={handleSearchSubmit}>
-          <SearchIconWrapper on={handleSearchSubmit}>
+        <FormControl
+          onSubmit={handleSearchSubmit}
+          sx={{ display: "flex", flexDirection: "row" }}
+        >
+          {/* <SearchIconWrapper >
             <SearchIcon />
-          </SearchIconWrapper>
+          </SearchIconWrapper> */}
           <StyledInputBase
+            sx={{ paddingLeft: "0px" }}
             type="text"
             name="search"
             value={search}
+            onKeyPress={handleKeyPress}
             onChange={handleChange}
             placeholder="Search Books.."
             inputProps={{ "aria-label": "search" }}
           />
+          <IconButton onClick={handleSearchSubmit}>
+            <SearchIcon />
+          </IconButton>
         </FormControl>
-        <IconButton onClick={() => handleSearchSubmit()}>
-          <SearchIcon />
-        </IconButton>
       </Search>
     </Box>
   );
