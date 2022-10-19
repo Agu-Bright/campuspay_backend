@@ -273,6 +273,7 @@ const sellerRequest = catchAsyncErrors(async (req, res, next) => {
     accountNumber: req.body.accountNumber,
     phoneNumber: req.body.phoneNumber,
     requested: true,
+    role: "seller",
   };
   const user = await User.findByIdAndUpdate(req.user._id, update, {
     new: true,

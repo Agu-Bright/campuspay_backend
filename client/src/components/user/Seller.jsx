@@ -46,7 +46,6 @@ function Seller() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(registerSeller(formData));
-    navigate("/");
   };
   // const redirect = location.search ? location.search.split("=")[1] : "/";
 
@@ -57,8 +56,9 @@ function Seller() {
     }
     if (isUpdated) {
       setOpen(true);
+      navigate("/admin/newBook");
     }
-  }, [error, isUpdated]);
+  }, [error, isUpdated, navigate]);
   const handleClose = (e, reason) => {
     if (reason === "clickaway") {
       return;

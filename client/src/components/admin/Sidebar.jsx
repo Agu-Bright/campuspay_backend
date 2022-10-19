@@ -82,17 +82,20 @@ const Sidebar = () => {
             </li>
 
             {user && user.role === "admin" && (
-              <li>
-                <Link to="/admin/users">
-                  <i className="fa fa-users"></i> Users
-                </Link>
-              </li>
+              <>
+                <li>
+                  <Link to="/admin/users">
+                    <i className="fa fa-users"></i> Users
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to="/admin/sellers">
+                    <i className="fa fa-star"></i> Sellers
+                  </Link>
+                </li>
+              </>
             )}
-            <li>
-              <Link to="/admin/sellers">
-                <i className="fa fa-star"></i> Sellers
-              </Link>
-            </li>
           </List>
         </nav>
       </Box>

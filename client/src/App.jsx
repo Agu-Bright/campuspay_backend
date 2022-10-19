@@ -76,12 +76,12 @@ const App = () => {
             <Route path="/admin/orders" element={<OrdersList />} />
             <Route path="/admin/order/:id" element={<ProcessOrder />} />
             <Route path="/admin/users" element={<UsersList />} />
+            <Route path="/admin/sellers" element={<SellersList />} />
           </Route>
           <Route path="/orders/me" element={<ListOrders />} />
           <Route path="/admin/user/:id" element={<UpdateUser />} />
           <Route path="/payment/verify" element={<Payment />} />
           <Route path="/me/seller" element={<Seller />} />
-          <Route path="/admin/sellers" element={<SellersList />} />
         </Routes>
         <Footer />
       </div>

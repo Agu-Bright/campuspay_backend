@@ -362,7 +362,7 @@ export default function PrimarySearchAppBar() {
         </Snackbar>
 
         <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
-          {user && user.role === "user" && !user.requested && (
+          {user && user.role === "user" && (
             <Typography
               variant="body2"
               sx={{ backgroundColor: "#FFF8F0", paddingLeft: "5px" }}
