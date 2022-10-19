@@ -33,12 +33,11 @@ function SignUp() {
     lastName: "",
     email: "",
     campus: "",
-    course: "",
     password: "",
     confirmPassword: "",
   });
 
-  const [avatar, setAvatar] = useState();
+  const [avatar, setAvatar] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState(
     "/images/default_Avater.png"
   );
@@ -64,17 +63,16 @@ function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.set("firstName", user.firstName);
-    formData.set("lastName", user.lastName);
-    formData.set("email", user.email);
-    formData.set("campus", user.campus);
-    formData.set("course", user.course);
-    formData.set("password", user.password);
-    formData.set("confirmPassword", user.confirmPassword);
-    formData.set("avatar", avatar);
+    // const formData = new FormData();
+    // formData.set("firstName", user.firstName);
+    // formData.set("lastName", user.lastName);
+    // formData.set("email", user.email);
+    // formData.set("campus", user.campus);
+    // formData.set("password", user.password);
+    // formData.set("confirmPassword", user.confirmPassword);
+    // formData.set("avatar", avatar);
 
-    dispatch(register(formData));
+    dispatch(register({ ...user }));
   };
 
   useEffect(() => {
@@ -160,14 +158,7 @@ function SignUp() {
             ))}
           </Select>
         </FormControl>
-        <TextField
-          label="Course of Study"
-          name="course"
-          type="text"
-          value={user.course}
-          onChange={handleChange}
-          required
-        />
+
         <TextField
           label="Password"
           type="password"
@@ -184,7 +175,7 @@ function SignUp() {
           onChange={handleChange}
           required
         />
-        <Stack direction="row" spacing={2}>
+        {/* <Stack direction="row" spacing={2}>
           <label htmlFor="avatar_upload">Avatar</label>
           <div className="d-flex align-items-center">
             <div>
@@ -210,7 +201,7 @@ function SignUp() {
               </label>
             </div>
           </div>
-        </Stack>
+        </Stack> */}
         <Stack
           sx={{
             display: "flex",

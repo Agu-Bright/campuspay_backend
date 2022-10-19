@@ -37,7 +37,7 @@ function UpdateProfile() {
   const [name, setName] = useState("");
   const [email, setemail] = useState("");
   const [campus, setCampus] = useState("");
-  const [course, setCourse] = useState("");
+  // const [course, setCourse] = useState("");
   const [bank, setBank] = useState("");
   const [accountName, setAccountName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
@@ -56,9 +56,9 @@ function UpdateProfile() {
     if (user) {
       setName(user?.name);
       setemail(user?.email);
-      setCourse(user?.courseOfStudy);
+      // setCourse(user?.courseOfStudy);
       setCampus(user?.campus);
-      setAvatarPreview(user?.avatar.url);
+      setAvatarPreview(user?.avatar?.url);
     }
     if (user.requested) {
       setBank(user?.bank);
@@ -79,7 +79,7 @@ function UpdateProfile() {
     formData.set("name", name);
     formData.set("email", email);
     formData.set("campus", campus);
-    formData.set("course", course);
+    // formData.set("course", course);
     formData.set("avatar", avatar);
 
     dispatch(updateProfile(formData));
@@ -159,13 +159,13 @@ function UpdateProfile() {
             value={campus}
             onChange={(e) => setCampus(e.target.value)}
           />
-          <TextField
+          {/* <TextField
             label="Course of Study"
             name="course"
             type="text"
             value={course}
             onChange={(e) => setCourse(e.target.value)}
-          />
+          /> */}
 
           {user && user.requested && (
             <>

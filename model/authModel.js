@@ -34,10 +34,6 @@ const userSchema = mongoose.Schema({
   },
   courseOfStudy: {
     type: String,
-    required: true,
-  },
-  regNumber: {
-    type: Number,
   },
   role: {
     type: String,

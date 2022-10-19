@@ -10,35 +10,45 @@ const cloudinary = require("cloudinary");
 //Register a user => /api/v1/register POST
 const registerUser = catchAsyncErrors(async (req, res, next) => {
   console.log(req.body);
-  const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
-    folder: "avatars",
-    width: 150,
-    crop: "scale",
-  });
-  const {
-    firstName,
-    lastName,
-    email,
-    campus,
-    course,
-    password,
-    confirmPassword,
-  } = req.body;
+
+  if (req.body.avatar) {
+    var result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+      folder: "avatars",
+      width: 150,
+      crop: "scale",
+    });
+  }
+
+  const { firstName, lastName, email, campus, password, confirmPassword } =
+    req.body;
   if (password !== confirmPassword) {
     return next(new ErrorHandler("your passwords dont match", 403));
   }
+
+  let data;
+
   const name = firstName + " " + lastName;
-  const user = await User.create({
-    name,
-    email,
-    campus,
-    courseOfStudy: course,
-    password,
-    avatar: {
-      public_id: result.public_id,
-      url: result.secure_url,
-    },
-  });
+  if (req.body.avatar) {
+    data = {
+      name,
+      email,
+      campus,
+      password,
+    };
+  } else {
+    data = {
+      name,
+      email,
+      campus,
+      password,
+      avatar: {
+        public_id: result?.public_id,
+        url: result?.secure_url,
+      },
+    };
+  }
+
+  const user = await User.create(data);
 
   //set Token to the cookie header
   sendToken(user, 200, res);
@@ -177,14 +187,17 @@ const updateUserDetails = catchAsyncErrors(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     campus: req.body.campus,
-    courseOfStudy: req.body.course,
   };
 
   //update avatar
   if (req.body.avatar !== "") {
     const user = await User.findById(req.user.id);
-    const image_id = user.avatar.public_id;
-    const res = await cloudinary.v2.uploader.destroy(image_id);
+    console.log(user);
+    if (user.avatar.public_id) {
+      console.log("running");
+      const image_id = user?.avatar?.public_id;
+      const res = await cloudinary.v2.uploader.destroy(image_id);
+    }
     const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
       folder: "avatar",
       width: 150,
