@@ -33,16 +33,20 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
+  paddingLeft: "5px",
   "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
+    // padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: { xs: "2px", md: `calc(1em + ${theme.spacing(4)})` },
+    // paddingLeft: { xs: "9px", md: `calc(1em + ${theme.spacing(4)})` },
+    paddingLeft: "5px",
+
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
       width: "20ch",
     },
     border: "1px solid #48e5c2",
+    borderRadius: "5px",
   },
 }));
 
@@ -66,9 +70,10 @@ function Searche() {
   };
 
   const handleKeyPress = (e) => {
-    if (e.keyCode === 13) {
+    if (e.keyCode === "13") {
       //search post
       e.preventDefault();
+
       if (search) {
         const newSearch = search.trim();
         navigate(`/books?search=${newSearch}`);
@@ -83,23 +88,42 @@ function Searche() {
     <Box sx={{ width: { xs: "15ch", md: "20ch" } }}>
       <Search>
         <FormControl
+          onKeyPress={handleKeyPress}
           onSubmit={handleSearchSubmit}
-          sx={{ display: "flex", flexDirection: "row" }}
+          sx={{ display: "flex", flexDirection: "row", width: "135%" }}
         >
           {/* <SearchIconWrapper >
             <SearchIcon />
           </SearchIconWrapper> */}
           <StyledInputBase
-            sx={{ paddingLeft: "0px" }}
             type="text"
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                //search post
+                e.preventDefault();
+
+                if (search) {
+                  const newSearch = search.trim();
+                  navigate(`/books?search=${newSearch}`);
+                  setSearch("");
+                } else {
+                  navigate("/");
+                }
+              }
+            }}
             name="search"
             value={search}
-            onKeyPress={handleKeyPress}
             onChange={handleChange}
             placeholder="Search Books.."
-            inputProps={{ "aria-label": "search" }}
+            inputProps={{
+              "aria-label": "search",
+              onkeypress: `${handleKeyPress}`,
+            }}
           />
-          <IconButton onClick={handleSearchSubmit}>
+          <IconButton
+            onClick={handleSearchSubmit}
+            sx={{ "&:focus": { outline: "none" } }}
+          >
             <SearchIcon />
           </IconButton>
         </FormControl>

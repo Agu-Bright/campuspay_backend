@@ -119,6 +119,10 @@ const orderSchema = mongoose.Schema({
     type: Date,
     unique: false,
   },
+  sellers: {
+    type: [mongoose.Schema.Types.ObjectId],
+    default: [],
+  },
   createdAt: {
     type: Date,
     default: Date.now,

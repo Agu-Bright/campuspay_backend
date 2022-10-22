@@ -7,6 +7,7 @@ const {
   allOrders,
   updateOrder,
   deleteOrder,
+  sellerOrders,
 } = require("../controllers/orderController");
 const {
   authMiddleware,
@@ -16,6 +17,7 @@ const {
 router.post("/order/new", authMiddleware, newOrder);
 router.get("/order/:id", authMiddleware, getSingleOrder);
 router.get("/orders/me", authMiddleware, myOrders);
+router.get("/orders/seller", authMiddleware, sellerOrders);
 
 router.get(
   "/admin/orders",

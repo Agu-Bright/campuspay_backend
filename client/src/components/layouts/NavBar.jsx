@@ -361,7 +361,10 @@ export default function PrimarySearchAppBar() {
           </SnackbarAlert>
         </Snackbar>
 
-        <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
+        <AppBar
+          position="fixed"
+          sx={{ backgroundColor: "white", padding: "0px" }}
+        >
           {user && user.role === "user" && (
             <Typography
               variant="body2"
@@ -373,7 +376,7 @@ export default function PrimarySearchAppBar() {
               </Link>
             </Typography>
           )}
-          <Toolbar>
+          <Toolbar sx={{ padding: "0px" }}>
             <Box width="80px" height="80px">
               <img
                 onClick={() => navigate("/")}
@@ -445,6 +448,7 @@ export default function PrimarySearchAppBar() {
                   outline: "none",
                 },
                 display: { xs: "block", md: "none" },
+                marginRight: "0px",
               }}
             >
               <MenuIcon color="primary" />

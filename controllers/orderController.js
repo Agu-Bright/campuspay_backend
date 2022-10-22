@@ -20,8 +20,8 @@ const newOrder = catchAsyncErrors(async (req, res, next) => {
     shippingPrice,
     paymentInfo,
     orderId,
+    sellers,
   } = req.body;
-
   const order = await Order.create({
     orderItems,
     shippingInfo,
@@ -31,6 +31,7 @@ const newOrder = catchAsyncErrors(async (req, res, next) => {
     paymentInfo,
     user: req.user._id,
     orderId,
+    sellers,
   });
 
   res.status(200).json({
@@ -68,11 +69,27 @@ const myOrders = catchAsyncErrors(async (req, res, next) => {
 
 //Admin get all orders => api/v1/admin/orders
 const allOrders = catchAsyncErrors(async (req, res, next) => {
-  let orders;
+  let orders = await Order.find();
   if (req.user.role === "seller") {
-    //get orders to the books created by the seller
+    //get orders that includes books created by the seller
+    const sellersOrders = orders.filter((order) =>
+      order.sellers.includes(req.user._id)
+    );
+    orders = sellersOrders;
+    let mainSellersItems = [];
+    orders.forEach((order) => {
+      //array of order items
+      let mainItems = [];
+      const itemsArray = order.orderItems;
+      console.log(itemsArray);
+      itemsArray.forEach((item) => {
+        mainItems.push(item);
+      });
+      console.log(mainItems);
+
+      mainItems.forEach((mainItem) => mainSellersItems.push(mainItem));
+    });
   }
-  orders = await Order.find();
   let totalAmount = 0;
   orders.forEach((order) => (totalAmount += order.itemsPrice));
   res.status(200).json({
@@ -121,8 +138,28 @@ const deleteOrder = catchAsyncErrors(async (req, res, next) => {
 
 //seller get all orders
 const sellerOrders = catchAsyncErrors(async (req, res, next) => {
-  //get all orders
-  //
+  //get all orders, specifically get the user that created the order
+  const orders = await Order.find();
+
+  let orderItems;
+  orders.forEach((element) => {
+    let items = [];
+    // element.orderItems.map((item) => {
+    //   items.push(item);
+    // });
+    console.log(element);
+    for (let i = 0; i <= element.orderItems.length; i++) {
+      items.push(element.orderItems[i]);
+    }
+    // console.log(items);
+    orderItems = items;
+    return orderItems;
+  });
+  res.status(200).json({ orderItems });
+  //get all order items
+  //get this seller
+  //filter out the items owned my this user
+  //return the items, thier ptotal price and the users that created the order
 });
 
 module.exports = {
@@ -132,4 +169,5 @@ module.exports = {
   allOrders,
   updateOrder,
   deleteOrder,
+  sellerOrders,
 };

@@ -14,6 +14,7 @@ function useQuery() {
 
 function Payment() {
   const [message, setMessage] = useState("");
+  // const [sellers, setSellers] = useState([]);
   const query = useQuery();
   const { user } = useSelector((state) => state.auth);
   // const params = useParams();
@@ -23,6 +24,7 @@ function Payment() {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   // get the reference id
   const id = query.get("trxref");
+
   // const status = "processing";
 
   useEffect(() => {
@@ -39,6 +41,13 @@ function Payment() {
             credentials: "include",
           }
         );
+
+        let sellers = [];
+
+        cartItems.forEach((element) => {
+          sellers.push(element.seller);
+        });
+
         const formData = {
           shippingInfo: shippingInfo,
           orderItems: cartItems,
@@ -52,6 +61,7 @@ function Payment() {
           taxPrice: Number(data.fees) / 100,
           shippingPrice: data.metadata.shippingPrice,
           totalPrice: Number(data.amount) / 100,
+          sellers,
         };
         //now save the data in the database
         dispatch(placeOrder(formData));

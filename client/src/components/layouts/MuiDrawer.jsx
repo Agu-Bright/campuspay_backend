@@ -54,19 +54,10 @@ function MuiDrawer({
   const { cartItems } = useSelector((state) => state.cart);
 
   return (
-    <Drawer
-      anchor="left"
-      open={open}
-      onClose={close}
-      sx={{
-        backgroundColor: "#48e5c2",
-        opacity: "0.98 ",
-        backdropFilter: "blur(5)",
-      }}
-    >
+    <Drawer anchor="left" open={open} onClose={close}>
       <Box
         p={2}
-        width="300px"
+        width="250px"
         textAlign="center"
         role="presentation"
         sx={{
@@ -94,6 +85,7 @@ function MuiDrawer({
             />
           </Box>
         </Box>
+        <Divider />
 
         <List sx={{ overflow: "scroll" }}>
           <ListItem disablePadding>

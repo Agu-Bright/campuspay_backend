@@ -16,7 +16,7 @@ exports.initializeTransaction = catchAsyncErrors(async (req, res, next) => {
       itemPrice: req.body.itemsPrice,
       shippingPrice: req.body.shippingPrice,
     },
-    // callback_url: `http://localhost:5000/payment/verify`,
+    //callback_url: `http://localhost:5000/payment/verify`,
     callback_url: `${req.protocol}://${req.get("host")}/payment/verify`,
   });
   res.status(200).json({
