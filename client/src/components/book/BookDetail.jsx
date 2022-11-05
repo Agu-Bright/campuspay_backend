@@ -22,6 +22,7 @@ import {
   Stack,
   Alert,
   Snackbar,
+  Divider,
 } from "@mui/material";
 
 // import { Carousel } from "react-bootstrap";
@@ -303,26 +304,39 @@ function BookDetail() {
                                   {`${reviews.length} review(s) for ${book?.book?.name}`}
                                 </h4>
                               )}
-                              {reviews &&
-                                reviews.map((rev) => (
-                                  <div className="media mb-4">
-                                    <div className="media-body">
-                                      <h6>
-                                        {rev.name}
-                                        <small> </small>
-                                      </h6>
-                                      <Stack spacing={2}>
-                                        <Rating
-                                          value={rev.rating}
-                                          precision={0.5}
-                                          size="small"
-                                          readOnly
-                                        />
-                                      </Stack>
-                                      <Typography>{rev.comment}</Typography>
-                                    </div>
-                                  </div>
-                                ))}
+                              <Box
+                                sx={{
+                                  backgroundColor: "rgb(224, 250, 250)",
+                                  borderRadius: "10px",
+                                  padding: "5px",
+                                  maxHeight: "35vh",
+                                  overflowY: "scroll",
+                                }}
+                              >
+                                {reviews &&
+                                  reviews.map((rev) => (
+                                    <>
+                                      <div className="media mb-4">
+                                        <div className="media-body">
+                                          <h6>
+                                            {rev.name}
+                                            <small> </small>
+                                          </h6>
+                                          <Stack spacing={2}>
+                                            <Rating
+                                              value={rev.rating}
+                                              precision={0.5}
+                                              size="small"
+                                              readOnly
+                                            />
+                                          </Stack>
+                                          <Typography>{rev.comment}</Typography>
+                                        </div>
+                                      </div>
+                                      <Divider />
+                                    </>
+                                  ))}
+                              </Box>
                             </div>
 
                             {user ? (

@@ -214,7 +214,7 @@ function Cart() {
                       "&:focus": { outline: "none" },
                     }}
                   >
-                    Procees To Checkout
+                    Proceed To Checkout
                   </LoadingButton>
                 </Stack>
               </div>

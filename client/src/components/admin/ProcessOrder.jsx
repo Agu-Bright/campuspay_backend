@@ -38,7 +38,7 @@ function ProcessOrder() {
   // useEffect(() => {
 
   // }, [dispatch, id]);
-
+  const { user: User } = useSelector((state) => state.auth);
   useEffect(() => {
     dispatch(getOrderDetails(id));
 
@@ -168,11 +168,21 @@ function ProcessOrder() {
                           </div>
 
                           <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                            <p>${item.price}</p>
+                            <span style={{ color: "green" }}>
+                              &#8358;{item.price}
+                            </span>
+                            {/* <p>${item.price}</p> */}
                           </div>
 
                           <div className="col-4 col-lg-3 mt-4 mt-lg-0">
                             <p>{`${item.quantity} Piece(s)`}</p>
+                            {User._id === item.seller && (
+                              <Typography>
+                                <Alert icon={false} severity="warning">
+                                  Your order{" "}
+                                </Alert>
+                              </Typography>
+                            )}
                           </div>
                         </div>
                       </div>

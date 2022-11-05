@@ -488,9 +488,10 @@ footer {
 #sidebar {
   min-width: 100%;
   max-width: 100%;
-  background: #3d464d;
+  background: #333;
   color: #fff;
   transition: all 0.3s;
+  padding: 5px 25px 0 5px;
 }
 #sidebar.active {
   margin-left: -250px;

@@ -66,7 +66,7 @@ function OrdersList() {
     if (isDeleted) {
       console.log("deleted");
     }
-  }, [dispatch, error, reset, isDeleted]);
+  }, [dispatch, error, isDeleted]);
 
   // const handleClose = (e, reason) => {
   //   if (reason === "clickaway") {

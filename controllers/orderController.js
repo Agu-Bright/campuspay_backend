@@ -68,7 +68,9 @@ const myOrders = catchAsyncErrors(async (req, res, next) => {
 });
 
 //Admin get all orders => api/v1/admin/orders
+
 const allOrders = catchAsyncErrors(async (req, res, next) => {
+  let totalAmount = 0;
   let orders = await Order.find();
   if (req.user.role === "seller") {
     //get orders that includes books created by the seller
@@ -76,28 +78,40 @@ const allOrders = catchAsyncErrors(async (req, res, next) => {
       order.sellers.includes(req.user._id)
     );
     orders = sellersOrders;
-    let mainSellersItems = [];
+    let orderItems = [];
     orders.forEach((order) => {
-      //array of order items
-      let mainItems = [];
-      const itemsArray = order.orderItems;
-      console.log(itemsArray);
-      itemsArray.forEach((item) => {
-        mainItems.push(item);
+      order.orderItems.forEach((item) => {
+        orderItems.push(item);
       });
-      console.log(mainItems);
-
-      mainItems.forEach((mainItem) => mainSellersItems.push(mainItem));
     });
+    // let sellersItems;
+    if (orderItems.length >= 1) {
+      let sellersItems = [];
+      orderItems.forEach((item) => {
+        if (item.seller.toString() === req.user._id.toString()) {
+          sellersItems.push(item);
+        }
+      });
+      if (sellersItems.length >= 1) {
+        const sum = sellersItems.reduce((acc, item) => {
+          return item.price + acc;
+        }, 0);
+        totalAmount = sum;
+      }
+    }
+    
   }
-  let totalAmount = 0;
-  orders.forEach((order) => (totalAmount += order.itemsPrice));
+  if (req.user.role !== "seller") {
+    orders.forEach((order) => (totalAmount += order.itemsPrice));
+  }
   res.status(200).json({
     success: true,
     totalAmount,
     orders,
   });
 });
+
+
 
 //Admin update, process order => api/v1/admin/order/:id
 const updateOrder = catchAsyncErrors(async (req, res, next) => {

@@ -116,18 +116,54 @@ function UpdateUser() {
                     </Typography>
                     <Typography>{user && user.campus}</Typography>
                   </div>
-                  <div className="form-group">
-                    <Typography>
-                      <b>Course Of Study</b>
-                    </Typography>
-                    <Typography>{user && user.courseOfStudy}</Typography>
-                  </div>
+
                   <div className="form-group">
                     <Typography>
                       <b>Role</b>
                     </Typography>
                     <Typography>{user && user.role}</Typography>
                   </div>
+                  {user && user.role === "seller" && (
+                    <>
+                      <h2
+                        style={{
+                          width: "auto",
+                          paddingLeft: "6px",
+
+                          borderLeft: "10px solid #48e5c2",
+                          borderBottom: "0.1px solid #48e5c2",
+                          borderRadius: "10px",
+                          borderBottomRightRadius: "0px",
+                        }}
+                      >
+                        Seller details{" "}
+                      </h2>
+                      <div className="form-group">
+                        <Typography>
+                          <b>Bank Name</b>
+                        </Typography>
+                        <Typography>{user && user.bank}</Typography>
+                      </div>
+                      <div className="form-group">
+                        <Typography>
+                          <b>Account Name</b>
+                        </Typography>
+                        <Typography>{user && user.accountName}</Typography>
+                      </div>
+                      <div className="form-group">
+                        <Typography>
+                          <b>Account Number</b>
+                        </Typography>
+                        <Typography>{user && user.accountNumber}</Typography>
+                      </div>
+                      <div className="form-group">
+                        <Typography>
+                          <b>Phone Number</b>
+                        </Typography>
+                        <Typography>{user && user.phoneNumber}</Typography>
+                      </div>
+                    </>
+                  )}
 
                   {user && user?.requested && (
                     <form className="shadow-lg">

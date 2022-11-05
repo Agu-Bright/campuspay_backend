@@ -1,5 +1,5 @@
 import React, { useState, useEffect, forwardRef } from "react";
-import { Stack, Alert, Snackbar, Typography } from "@mui/material";
+import { Stack, Alert, Snackbar, Typography, AlertTitle } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useSelector, useDispatch } from "react-redux";
 import { createBook, clearErrors } from "../../redux/actions/booksAction";
@@ -188,7 +188,10 @@ function NewBook() {
 
             <div className="form-group">
               <label>Images</label>
-
+              <Alert severity="info" sx={{ marginBottom: "10px" }}>
+                <AlertTitle>Info</AlertTitle>
+                upload three images of the item, showing the various sides
+              </Alert>
               <div className="custom-file">
                 <input
                   type="file"

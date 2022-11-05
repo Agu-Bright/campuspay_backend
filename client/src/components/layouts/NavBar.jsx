@@ -190,64 +190,8 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <List sx={{ padding: "0" }}>
-        <ListItem disablePadding>
-          <ListItemButton onClick={handleHomeNavigate}>
-            <ListItemIcon>
-              <ListItemAvatar>
-                <Avatar sx={{ backgroundColor: "white" }}>
-                  <HomeIcon color="primary" />
-                </Avatar>
-              </ListItemAvatar>
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton onClick={handleBookNavigate}>
-            <ListItemIcon>
-              <ListItemAvatar>
-                <Avatar sx={{ backgroundColor: "white" }}>
-                  <AutoStoriesIcon color="primary" />
-                </Avatar>
-              </ListItemAvatar>
-            </ListItemIcon>
-            <ListItemText primary="Books" />
-          </ListItemButton>
-        </ListItem>
-        <Divider />
         {user && !loading ? (
           <>
-            <ListItem disablePadding>
-              <ListItemButton onClick={handleCartNavigate}>
-                <ListItemIcon>
-                  <ListItemAvatar>
-                    <Badge
-                      badgeContent={cartItems ? cartItems.length : "0"}
-                      color="warning"
-                    >
-                      <ShoppingCartIcon color="primary" />
-                    </Badge>
-                  </ListItemAvatar>
-                </ListItemIcon>
-                <ListItemText primary="carts" />
-              </ListItemButton>
-            </ListItem>
-            <Divider />
-
-            <ListItem disablePadding>
-              <ListItemButton onClick={handleOrderNavigate}>
-                <ListItemIcon>
-                  <ListItemAvatar>
-                    <Avatar sx={{ backgroundColor: "white" }}>
-                      <ShoppingCartCheckoutIcon color="primary" />
-                    </Avatar>
-                  </ListItemAvatar>
-                </ListItemIcon>
-                <ListItemText primary="Orders" />
-              </ListItemButton>
-            </ListItem>
-
-            <Divider />
             {user?.role === "seller" && (
               <ListItem disablePadding>
                 <ListItemButton onClick={handleSellerNavigate}>
@@ -385,14 +329,54 @@ export default function PrimarySearchAppBar() {
                 style={{ width: "80px", height: "80px" }}
               />
             </Box>
-
             <Searche />
-            {/* <Button
-              onClick={() => navigate("/books")}
-              sx={{ display: { xs: "none", md: "block" } }}
-            >
-              Books
-            </Button> */}
+            <Stack direction="row">
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", md: "flex" },
+                  marginLeft: "90px",
+                }}
+              >
+                <Button
+                  color="secondary"
+                  href="/"
+                  sx={{
+                    my: 2,
+                    marginLeft: "5px",
+                    "&:focus": { outline: "none" },
+                  }}
+                  startIcon={<HomeIcon color="primary" />}
+                >
+                  Home
+                </Button>
+                <Button
+                  color="secondary"
+                  href="/books"
+                  sx={{
+                    my: 2,
+                    marginLeft: "px",
+                    "&:focus": { outline: "none" },
+                  }}
+                  startIcon={<AutoStoriesIcon color="primary" />}
+                >
+                  Books
+                </Button>
+                <Button
+                  color="secondary"
+                  href="/orders/me"
+                  sx={{
+                    my: 2,
+                    marginLeft: "px",
+                    "&:focus": { outline: "none" },
+                  }}
+                  startIcon={<ShoppingCartCheckoutIcon color="primary" />}
+                >
+                  orders
+                </Button>
+              </Box>
+            </Stack>
+
             <Box sx={{ flexGrow: 1 }} />
             <Box
               sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
@@ -413,26 +397,45 @@ export default function PrimarySearchAppBar() {
                   <ShoppingCartIcon />
                 </Badge>
               </IconButton>
-              <IconButton
-                sx={{ "&:focus": { outline: "none" } }}
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                {user && !loading ? (
-                  <Avatar alt={user.name} src={user?.avatar?.url} />
-                ) : (
-                  <AccountCircle />
-                )}
-              </IconButton>
+
               {user && !loading && (
-                <Typography sx={{ margin: "4px" }} variant="body1">
-                  Welcome!! {user?.name?.split(" ")[0]}
-                </Typography>
+                <>
+                  <IconButton
+                    sx={{ "&:focus": { outline: "none" } }}
+                    size="large"
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    onClick={handleProfileMenuOpen}
+                    color="inherit"
+                  >
+                    <Avatar alt={user.name} src={user?.avatar?.url} />
+                  </IconButton>
+
+                  <Typography sx={{ margin: "4px" }} variant="body1">
+                    Welcome!! {user?.name?.split(" ")[0]}
+                  </Typography>
+                </>
+              )}
+
+              {!user && (
+                <>
+                  <Button
+                    sx={{ marginLeft: "10px" }}
+                    href="/sign-up"
+                    variant="outlined"
+                  >
+                    sign up
+                  </Button>
+                  <Button
+                    sx={{ marginLeft: "10px" }}
+                    href="/sign-in"
+                    variant="outlined"
+                  >
+                    sign in
+                  </Button>
+                </>
               )}
             </Box>
 

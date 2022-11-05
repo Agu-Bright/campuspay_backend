@@ -19,3 +19,14 @@ const seedProduct = async (req, res) => {
 };
 
 seedProduct();
+
+// A function that converts a binary number input as string to an integer
+// const binaryToInteger = (string) => {
+//   //split the string
+//   const stringArray = string.split(" "); // this returns an array of the string
+//   const stringLength = stringArray.length;
+//   let multipleArray = []
+//   for (let i =  0; i <= stringLength; i++){
+//     stringArray[0] * 2
+//   }
+// };

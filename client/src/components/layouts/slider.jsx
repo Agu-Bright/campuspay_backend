@@ -1,58 +1,81 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
-import { Button, Typography, Box } from "@mui/material";
+import { Button, Typography, Box, Stack } from "@mui/material";
 import { Container } from "@mui/system";
 import { useSelector } from "react-redux";
-
+import illustration from "../../images/illustration2.png";
 function Slider() {
   const { user } = useSelector((state) => state.auth);
   return (
-    <Box id="home" sx={{ width: "90%", overflow: "hidden" }}>
-      {!user && (
-        <>
-          <Typography variant="h3" sx={{ color: "white" }}>
-            WELCOME TO <span class="head">CAMPUSPAY</span>{" "}
-          </Typography>
-
-          <p>
-            Sign up now to purchase your books and other academic related items
-          </p>
-          <div className="btn">
-            <Button href="/sign-up" size="large" variant="outlined">
-              Sign Up
+    <div className="slider">
+      <div className="theme">
+        <Typography>
+          welcome to <span className="name">campuspay</span>
+        </Typography>
+        <Typography className="main">Students suporting students</Typography>
+        <Typography
+          variant="body1"
+          className="body1"
+          sx={{ fontSize: "x-small" }}
+        >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
+          explicabo earum obcaecati qui, doloremque facere cumque consequatur
+          minima sapiente atque.
+        </Typography>
+        {!user && (
+          <>
+            <Button
+              size="large"
+              variant="contained"
+              sx={{ marginRight: "10px", marginTop: "40px" }}
+              href="/sign-up"
+            >
+              Sign up
             </Button>
-          </div>
-        </>
-      )}
-
-      {user && user.role === "user" && (
-        <>
-          <Typography variant="h3" sx={{ color: "white" }}>
-            SELL ON <span class="head">CAMPUSPAY</span>{" "}
-          </Typography>
-
-          <p>Register you seller accout to start selling on your items</p>
-          <div className="btn">
-            <Button href="/me/seller" size="large" variant="outlined">
+          </>
+        )}
+        {user && user.requested === false && (
+          <>
+            <Button
+              size="large"
+              variant="contained"
+              sx={{ marginRight: "10px", marginTop: "40px" }}
+              href="/me/seller"
+            >
               Become a seller
             </Button>
-          </div>
-        </>
-      )}
-      {user && user.role === "seller" && (
-        <>
-          <Typography variant="h3" sx={{ color: "white" }}>
-            CREATE ITEMS TO SELL ON<span class="head"> CAMPUSPAY</span>{" "}
-          </Typography>
-
-          <div className="btn">
-            <Button href="/admin/newBook" size="large" variant="outlined">
-              CREATE AN ITEM
+          </>
+        )}
+        {user && user.role === "seller" && (
+          <>
+            <Button
+              size="large"
+              variant="contained"
+              sx={{ marginRight: "10px", marginTop: "40px" }}
+              href="/admin/newBook"
+            >
+              Create an item
             </Button>
-          </div>
-        </>
-      )}
-    </Box>
+          </>
+        )}
+        {user && user.role === "admin" && (
+          <>
+            <Button
+              size="large"
+              variant="contained"
+              sx={{ marginRight: "10px", marginTop: "40px" }}
+              href="/dashboard"
+            >
+              Dashboard
+            </Button>
+          </>
+        )}
+      </div>
+
+      <div className="img">
+        <img src={illustration} alt="illustration" />
+      </div>
+    </div>
   );
 }
 

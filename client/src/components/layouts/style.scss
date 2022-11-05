@@ -1,75 +1,95 @@
-#home {
-  background-image: linear-gradient(
-      rgba(5, 5, 30, 0.7),
-      rgba(10, 217, 203, 0.845)
-    ),
-    url("banner1.jpg");
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
+@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,900;1,200;1,300;1,400;1,500;1,600;1,900&family=Smooch+Sans:wght@100;300&display=swap");
+
+.slider {
+  width: "100%";
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  text-align: center;
-  padding-top: 80px;
+  background-color: rgb(224, 250, 250);
+  .theme {
+    padding: 20px 50px 20px 20px;
 
-  h2 {
-    color: #fff;
-    font-size: 3rem;
-    letter-spacing: 1px;
+    .name {
+      font-family: "Arimo", sans-serif;
+      font-weight: 900;
+      font-size: 20px;
 
-    .head {
-      font-size: larger;
+      color: rgb(106, 206, 173);
+    }
+    .main {
+      font-family: "Arimo", sans-serif;
+      font-weight: 900;
+      font-size: 65px;
+      line-height: 60px;
+      color: black;
+    }
+    .body1 {
+      margin-top: 20px;
+      padding-top: 20px;
+      font-size: small !important;
+      font-weight: 100 !important;
     }
   }
-
-  p {
-    width: 50%;
-    color: #fff;
-    font-size: 0.9rem;
-    line-height: 25px;
-  }
-
-  .btn {
-    margin-top: 70px;
-
-    a {
-      text-decoration: none;
-      font-size: 0.9rem;
-      padding: 13px 35px;
-      background-color: #ffff;
-      border-radius: 5px;
-      transition: 0.5s ease;
-      font-weight: bold;
-    }
-    #blue {
-      color: #fff;
-      background: rgb(21, 21, 100);
-    }
-    #blue:hover {
-      color: rgb(21, 21, 100);
-      background: #fff;
-    }
-
-    #yellow {
-      color: #fff;
-      background: #fdc93b;
-    }
-    #yellow:hover {
-      color: #fdc93b;
-      background: #fff;
-    }
+  .img {
+    padding: 0 50px 20px 50px;
   }
 }
 
-//This is the media querry for the Home section
+@media screen and (max-width: 480px) {
+  .slider {
+    width: "100%";
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(224, 250, 250);
+  }
 
-@media (max-width: 769px) {
-  #home p {
-    width: 90%;
-    font-size: 1.5em;
-    font-weight: 200;
+  img {
+    width: 99vw;
+  }
+
+  .slider .img {
+    padding: 0;
+  }
+}
+@media screen and (max-width: 366px) {
+  .slider .theme {
+    padding: 3px 5px 0 5px;
+  }
+  .slider .theme .main {
+    font-family: "Arimo", sans-serif;
+    font-weight: 900;
+    font-size: 60px;
+    line-height: 60px;
+    color: black;
+  }
+}
+@media screen and (max-width: 600px) {
+  .slider {
+    width: "100%";
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(224, 250, 250);
+  }
+  .slider .img {
+    padding: 0;
+  }
+}
+@media screen and (max-width: 938px) {
+  .slider .img {
+    padding: 0;
+  }
+}
+@media screen and (max-width: 616px) {
+  .slider {
+    width: "100%";
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(224, 250, 250);
   }
 }

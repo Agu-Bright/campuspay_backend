@@ -86,7 +86,6 @@ function MuiDrawer({
           </Box>
         </Box>
         <Divider />
-
         <List sx={{ overflow: "scroll" }}>
           <ListItem disablePadding>
             <ListItemButton onClick={homeNav}>
@@ -173,7 +172,13 @@ function MuiDrawer({
                           <b>Seller actions</b>
                         </Button>
                       </AccordionSummary>
-                      <AccordionDetails>
+                      <AccordionDetails
+                        sx={{
+                          backgroundColor: "#48e5c2",
+                          margin: "5px",
+                          borderRadius: "10px",
+                        }}
+                      >
                         <Stack
                           spacing={2}
                           direction="column"
@@ -187,6 +192,7 @@ function MuiDrawer({
                           >
                             All Books
                           </Button>
+                          <Divider />
                           <Button
                             color="secondary"
                             variant="outlined"
@@ -195,6 +201,7 @@ function MuiDrawer({
                           >
                             Create Book
                           </Button>
+                          <Divider />
                           <Button
                             color="secondary"
                             variant="outlined"
@@ -243,16 +250,24 @@ function MuiDrawer({
                           <ListItemText primary="Admin Actions" />
                         </ListItemButton>
                       </AccordionSummary>
-                      <AccordionDetails>
+                      <AccordionDetails
+                        sx={{
+                          backgroundColor: "#48e5c2",
+                          margin: "5px",
+                          borderRadius: "10px",
+                        }}
+                      >
                         <Stack
-                          spacing={2}
+                          spacing={1}
                           direction="column"
                           sx={{ alignItems: "start" }}
                         >
                           <Button
                             color="secondary"
                             variant="outlined"
-                            sx={{ "&:focus": { outline: "none" } }}
+                            sx={{
+                              "&:focus": { outline: "none" },
+                            }}
                             onClick={adminBookNav}
                           >
                             All Books
